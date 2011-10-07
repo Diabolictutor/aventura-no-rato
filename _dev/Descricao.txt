@@ -1,0 +1,104 @@
+Aventura No Rato
+================
+
+[cols=">1s,3m",frame="topbot",options="header,footer"]
+|=====================================================
+|Formação |Jogo do Rato
+|Local    |Marinha Grande
+|Formador |Sérgio Lopes, knitter.is@gmail.com
+|Projecto |Descrição inicial do projecto
+|=====================================================
+
+Objectivos
+----------
+
+Criar um sistema que incorpore um software de fórum e um jogo online, _browser based_, de modo a criar uma pequena comunidade de jogadores. O fórum deve ser simples e possibilitar os mecanismos tradicionais de *tópicos*, *respostas* e *quadros* e possuir um sistema de *mensagens instantâneas* (shoutbox). O jogo deve representar uma aventura _"point-and-click"_ onde o jogador terá de levar uma personagem através de um conjunto de cenários onde poderão surgir desafios ou inimigos a vencer. O objectivo do jogo será a sobrevivência da personagem por todos os desafios de modo a que a mesma consiga chegar ao fim do jogo e ao cenário final.
+
+Descrição de Funcionalidades
+----------------------------
+
+De forma geral o sistema deve incluir: *página inicial* onde são apresentadas algumas informações, página com *descrição do projecto*, sistema de *fórum*, *jogo*, página com *estatísticas do jogo* e página com *estatísticas das personagens*.
+
+Em todos os casos deve existir um *menu principal* com acesso à página principal.
+
+Páginas
+~~~~~~~
+
+As páginas a criar devem permitir indicar ao utilizador todas as informações estáticas ou semi-estáticas. Estas páginas são a *página principal*, onde devem aparecer os três últimos tópicos/respondidos no fórum, as estatísticas de uma personagem escolhida aleatoriamente e uma breve introdução ao jogo; a página com informações *sobre* o sistema, onde se apresenta a descrição completa do projecto; a página de *estatísticas* sobre a utilização do jogo e do fórum.
+
+Fórum
+~~~~~
+
+O fórum deve permitir escrever mensagens organizadas por *quadros* e por *tópicos*. Cada utilizador poderá criar um ou mais tópicos e responder aos tópicos que lhe são visíveis. Sempre presente deve estar um sistema de mensagens instantâneas, a que normalmente se chama _shoutbox_, e no fim da página devem ser apresentadas as estatísticas mais simples do fórum (número de utilizadores, número de mensagens, utilizadores ligados nos últimos 15 minutos).
+
+Os tópicos podem ser públicos ou privados, tópicos públicos estão disponíveis para todos os utilizadores enquanto que tópicos privados são visíveis apenas a utilizadores que sejam administradores. Esta distinção deve ser aplicada também à _shoutbox_ e deve ser possível um administrador enviar uma mensagem apenas visível aos restantes administradores (por exemplo usando uma tag especial), mas um utilizador normal não pode enviar mensagens privadas ou de administração na _shoutbox_.
+
+Deve ser possível pesquisar mensagens de acordo com um conjunto de critérios a definir, tendo atenção às permissões do utilizador que pesquisa.
+
+Só utilizadores autenticados é que podem escrever novas mensagens, na _shoutbox_ ou nos tópicos, e só utilizadores autenticados podem ver a _shoutbox_. Os utilizadores visitantes devem apenas conseguir ler as mensagens do fórum mas não podem ver a _shoutbox_.
+
+Os quadros são apenas grupos de tópicos, um quadro não pode ter outros quadros dentro, apenas pode ter tópicos. A ordem dos quadros deve ser definida pelos administradores.
+
+Um tópico serve para juntar mensagens comuns. Um tópico não pode ter outros tópicos dentro, apenas mensagens. Ao ser criado um tópico é também criada a primeira mensagem que o caracteriza, isto é, um utilizador cria um tópico novo ao criar uma mensagem nova não associada a outro tópico. Este novo tópico terá o título da primeira mensagem. Os criadores de uma mensagem podem sempre alterar a sua mensagem, sendo essa alteração registada, e os administradores podem editar qualquer mensagem. No entanto, só os administradores podem apagar mensagens, sejam elas quais forem.
+
+Acções mais avançadas como gestão de tópicos (mover, juntar, separar, etc) ou gestão complexa de utilizadores (banir utilizador do fórum) só serão consideradas após completas todas as outras funcionalidades.
+
+[]
+|====
+|Req. |Perm.   |Descrição
+|1    |ADM     |Criar quadro
+|2    |ADM     |Editar quadro
+|3    |ADM     |Mover quadro
+|4    |ADM     |Apagar quadro
+|5    |AUT     |Criar tópico
+|6    |ADM     |Apagar tópico
+|7    |AUT     |Escrever mensagem
+|8    |AUT/ADM |Editar mensagem
+|9    |ADM     |Apagar mensagem
+|10   |AUT     |Escrever na shoutbox
+|11   |ADM     |Escrever mensagem de administração na shoutbox
+|12   |VST     |Pesquisar mensagens
+|====
+
+*Dados dos quadros*: título, ID, ordem; +
+*Dados dos tópicos*: título, ID, data de criação, autor, número de respostas, número de visitas; +
+*Dados das mensagens*: título, ID, texto, autor, data da última modificação, autor da última modificação
+
+Jogo
+~~~~
+
+O jogo tem por base uma mistura de aventura e RPG. A história base do jogo ainda não está definida e a linha de desenvolvimento pode seguir um caminho com base no "nonsense" ou numa história a desenvolver durante a criação do sistema. No entanto alguns elementos base devem constar no produto final. Assim, é necessário que o jogo permita uma interacção _"point-and-click"_ através da navegação de vários cenários, alguns onde estão presentes pequenos desafios para o jogador resolver outros onde podem surgir inimigos que será necessário combater. Poderão existir mais elementos no jogo, como NPCs com os quais se deve interagir mas toda a mecânica deverá ter como base o sistema _"point-and-click"_.
+
+O jogador poderá clicar e arrastar elementos do cenário que lhe é apresentado e guardar esses elementos na sua mochila (se possuir alguma), alguns objectos especiais podem ir para as mãos do jogador (como armas) mas regra geral, todos os objectos devem ir para a mochila.
+
+Um jogador possui um conjunto de características que afectam a forma como interage com o cenário. Estas características são definidas durante a criação da personagem através de um sistema semelhante ao usado em *AD&D*. Após criada a personagem, a mesma pode evoluir as suas características através da resolução de desafios no jogo ou do combate com inimigos. Algumas características podem ser influenciadas por objectos presentes nas mãos ou corpo.
+
+O combate com inimigos pode fornecer à personagem novos itens.
+
+
+[]
+|====
+|Req. |Descrição
+|1    |Alternar entre cenário
+|2    |Pegar objecto e largar no cenário
+|3    |Pegar objecto e largar em local especial
+|4    |Pegar objecto e colocar na mochila
+|5    |Pegar objecto e combinar com outro
+|6    |Falar com NPC e receber objectivo
+|7    |Falar com NPC e ter objectivo cumprido
+|8    |Falar com NPC e ter objectos importantes
+|9    |Falar com NPC e entregar objecto (vender?)
+|10   |Atacar inimigo com arma
+|11   |Atacar inimigo com objecto
+|12   |Fugir
+|13   |Resolver puzzle no cenário (puzzle de 8, sudoku, desafios de lógica, etc)
+|====
+
+*Dados da personagem*: nome, peso, força, ataque, defesa, inteligência, sorte, vida, ID;
+*Dados de um inimigo*: nome, força, ataque, defesa, sorte, inteligência, vida, ID, loot;
+*Dados de objectos*: nome, descrição, atributo que afecta jogador e valor do atributo;
+
+Página de Personagem
+~~~~~~~~~~~~~~~~~~~~
+
+Cada personagem deve possuir uma página com um resumo das características e uma lista dos itens que tem na mochila e no corpo. Nesta página poderão ser apresentadas todas as informações que se considerem interessantes para mostrar a outros jogadores e deve existir forma de pesquisar personagens.
