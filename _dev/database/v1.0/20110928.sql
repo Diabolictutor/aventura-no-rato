@@ -1,3 +1,10 @@
+-- //TODO: Diogo: Alterar a tabela user e adicionar os campos:
+-- * grupo, campo inteiro que pode levar os valores 1 ou 2, com o valor 1 por omissão, valor obrigatório
+-- * assinatura, campo de texto com um máximo de 255 caracteres, valor facultativo
+-- * website, campo de texto com um máximo de 255 caracteres, valor facultativo
+-- * data de último login, data e hora, valor obrigatório e automático
+-- * activo, permite indicar se um utilizador está activo ou não, valores 0 ou 1, 1 por omissão, valor obrigatório
+-- * todas as opções que considerares importantes para o fórum
 CREATE TABLE `User` (
 `userID` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT ,
 `email` VARCHAR( 255 ) NOT NULL UNIQUE ,
