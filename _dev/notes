@@ -1,0 +1,45 @@
+Páginas:
+ - Home
+    - About Project
+    - Statistics
+        - Players List
+        - Characters List
+            - Character statistics
+        - Forum Statistics
+        - Game Statistics
+ - Login
+ - Account [General settings, forum settings, characters list]
+ - Register
+ - Forum
+    - Index
+        - Board Index
+            - Create Thread
+            - Read/Reply Thread
+    - Search
+        - Search results
+ - Play/Game
+    [if multiple characters]
+    - Choose Character
+    [if no character]
+    - Create Character
+    [if one character]
+    - Play
+ - Administration
+    - Forum Administration
+        - Boards Index
+            - Create/Edit Board
+    - Users Index
+      - Create/Edit User
+      - List user messages
+    - CMS (Pages, footer info, header info) content
+    - Game Administration
+        - ...
+
+Menus:
+ - All: Home, Login|Logout, [Account], Forum, Play
+ - Forum: Index, Search
+ - Accout: Profile, Forum Settings, Characters, Login Information
+ - Statistics: Players List, Characters List, Forum Statistics, Game Statistics
+ - Play: Create Character, Change Character
+ - Administration: Forum, CMS, Game, Users
+ - Game Administration: ...

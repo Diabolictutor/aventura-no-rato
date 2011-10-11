@@ -30,25 +30,29 @@ class View {
         return (isset($this->data[$name]) ? $this->data[$name] : null);
     }
 
+    //Jorge
     public function createURL($path, $params = array()) {
         //TODO: devolver um URL completo para o controlador/método e parâmetros passados
     }
 
-    public function includeTemplateFile($name) {
+    public function includeViewFile($name) {
         $name = VIEWROOT . '/' . $name . '.php';
         if (is_file($name))
             include $name;
     }
 
+    //Jorge
     public function registerScript($script, $pos = 2) {
         //TODO: colocar o script indicado na variável adequada
         //implementar sistema de prioridade, !
     }
 
+    //Pedro
     public function registerStyle($style) {
         //TODO: registar o ficheiro CSS, implementar sistema de prioridade, !
     }
 
+    //Jorge
     public function getStyleSection() {
         ob_start();
         //TODO: criar o HTML necessário para colocar todos os ficheiros CSS no 
@@ -56,6 +60,7 @@ class View {
         return ob_get_clean();
     }
 
+    //Pedro
     public function getScriptSection() {
         ob_start();
         //TODO: criar HTML necessário para colocar todos os ficheiros JS no 
@@ -63,6 +68,7 @@ class View {
         return ob_get_clean();
     }
 
+    //Diogo
     public function getInitScriptSection() {
         ob_start();
         //TODO: criar o HTML necessário para colocar todo o código de iniciação 
@@ -70,6 +76,7 @@ class View {
         return ob_get_clean();
     }
 
+    //Jorge
     public function getEndScriptSection() {
         ob_start();
         //TODO: criar o HTML necessário para colocar todo o código de iniciação 

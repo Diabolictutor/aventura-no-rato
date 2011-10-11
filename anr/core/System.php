@@ -51,12 +51,24 @@ class System {
         unset($_GET['r'], $_GET['c'], $_GET['a']);
     }
 
+    /**
+     *
+     * @global System $app The application created in the <em>index.php</em> file.
+     * 
+     * @return System The application running the request.
+     */
     public static function app() {
         global $app;
 
         return $app;
     }
 
+    /**
+     * Determines the correct URL used by the system.
+     * 
+     * @param boolean $includeFilename if the script name should be part of the URL.
+     * @return string The URL.
+     */
     public static function findURL($includeFilename = false) {
         if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
             $protocol = 'https';
@@ -87,6 +99,11 @@ class System {
         return $protocol . '://' . $server_name . $port . $self . '/';
     }
 
+    /**
+     * Returns the site URL.
+     * 
+     * @return string The full site URL.
+     */
     public function getURL() {
         return $this->url;
     }
