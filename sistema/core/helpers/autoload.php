@@ -15,7 +15,8 @@ function recreateAutoloadCache() {
     $paths = array(
         APPROOT . '/core/',
         APPROOT . '/forum/',
-        APPROOT . '/aventura/',
+        APPROOT . '/game/',
+        APPROOT . '/site/',
     );
 
     foreach ($paths as $dir) {

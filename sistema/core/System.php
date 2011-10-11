@@ -1,8 +1,10 @@
 <?php
 
-class Sistema {
+class System {
 
     private $url;
+    private $controller;
+    private $action;
 
     public function __construct() {
         $this->url = self::findURL();
@@ -11,19 +13,42 @@ class Sistema {
     public function execute() {
         $this->route();
 
-        //TODO: instanciar
-        //if ($this->method != '') {
-        //    $method = $this->method;
-        //}
-        //if (!empty($this->params)) {
-        //    $this->controller->$method($this->params);
-        //} else {
-        //    $this->controller->$method();
-        //}
+        $c = $this->controller;
+        $a = $this->action;
+
+        $this->controller = new $c();
+        $this->controller->$a();
     }
 
     private function route() {
-        //TODO: implementar escolha
+        //r - route; c - controller; a - action;
+
+        $this->controller = 'Site';
+        $this->action = 'index';
+        if (!isset($_GET['r']) && !isset($_GET['c'])) {
+            return;
+        }
+
+        if (!isset($_GET['r']) && isset($_GET['c']) && class_exists($_GET['c'])) {
+            $this->controller = $_GET['c'];
+            $action = isset($_GET['a']) ? $_GET['a'] : 'index';
+
+            return;
+        }
+
+        if (isset($_GET['r']) && $_GET['r'] !== 'forum' && $_GET['r'] !== 'game') {
+            $this->controller = 'Error';
+            $this->action = 'index';
+
+            return;
+        }
+
+        if (isset($_GET['r'])) {
+            $this->controller = isset($_GET['c']) && class_exists($_GET['c']) ? $_GET['c'] : ucfirst($_GET['r']);
+        }
+        $action = isset($_GET['a']) && method_exists($this->controller, $_GET['a']) ? $_GET['a'] : 'index';
+
+        unset($_GET['r'], $_GET['c'], $_GET['a']);
     }
 
     public static function app() {
