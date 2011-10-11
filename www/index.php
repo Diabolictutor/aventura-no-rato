@@ -3,7 +3,7 @@
 ini_set('magic_quotes_runtime', 0);
 //
 define('WEBROOT', realpath(dirname(__FILE__)));
-define('APPROOT', realpath(dirname(__FILE__) . '/../sistema'));
+define('APPROOT', realpath(dirname(__FILE__) . '/../anr'));
 define('VIEWROOT', APPROOT . '/views');
 
 if (is_file(WEBROOT . '/config.local.php')) {
