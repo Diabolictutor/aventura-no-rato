@@ -30,9 +30,35 @@ class View {
         return (isset($this->data[$name]) ? $this->data[$name] : null);
     }
 
-    //Jorge
+    /**
+     *
+     * @param array $path
+     * @param array $params
+     * @return string 
+     */
     public function createURL($path, $params = array()) {
-        //TODO: devolver um URL completo para o controlador/método e parâmetros passados
+        $ps = array();
+        if (isset($path['r'])) {
+            $ps[] = $path['r'];
+        }
+
+        if (isset($path['c'])) {
+            $ps[] = $path['c'];
+        }
+
+        if (isset($path['a'])) {
+            $ps[] = $path['a'];
+        }
+
+        foreach ($params as $key => $value) {
+            $ps[] = $key . '=' . urlencode($value);
+        }
+
+        if (empty($ps)) {
+            return System::app()->getURL();
+        }
+
+        return System::app()->getURL() . '/index.php?' . implode('&', $ps);
     }
 
     public function includeViewFile($name) {
@@ -43,6 +69,14 @@ class View {
 
     //Jorge
     public function registerScript($script, $pos = 2) {
+
+        if ($pos == self::$POS_END) {
+            $this->jsEnd[] = $script();
+        } else if ($pos == self::$POS_INIT) {
+            $this->jsInit[] = $script();
+        } else if ($pos == self::$POS_HEAD) {
+            $this->scripts[] = $script();
+        }
         //TODO: colocar o script indicado na variável adequada
         //implementar sistema de prioridade, !
     }

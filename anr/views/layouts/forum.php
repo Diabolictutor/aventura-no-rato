@@ -10,11 +10,11 @@
         <div id="top">
             <div id="mainmenu">
                 <ul>
-                    <li class="active"><a href="#" alt="">Home</a></li>
-                    <li><a href="#" alt="">Forum</a></li>
+                    <li class="active"><a href="<?php echo $this->createURL('/'); ?>" alt="">Home</a></li>
+                    <li><a href="..." alt="">Forum</a></li>
                     <li><a href="#" alt="">Play</a></li>
                     <!-- //TODO: link para conta se autenticado -->
-                    <!-- <li><a href="#" alt="">Account</a></li> -->
+                    <!-- <li><a href="../account, array('user' => 2)" alt="">Account</a></li> -->
                     <!-- //TODO: Logout se autenticado -->
                     <li><a href="#" alt="">Login</a></li>
                 </ul>
