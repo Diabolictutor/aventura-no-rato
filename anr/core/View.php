@@ -77,13 +77,10 @@ class View {
         } else if ($pos == self::$POS_HEAD) {
             $this->scripts[] = $script();
         }
-        //TODO: colocar o script indicado na variável adequada
-        //implementar sistema de prioridade, !
     }
 
-    //Pedro
     public function registerStyle($style) {
-        //TODO: registar o ficheiro CSS, implementar sistema de prioridade, !
+        $this->styles[] = $style;
     }
 
     //Jorge
@@ -94,19 +91,29 @@ class View {
         return ob_get_clean();
     }
 
-    //Pedro
     public function getScriptSection() {
         ob_start();
-        //TODO: criar HTML necessário para colocar todos os ficheiros JS no 
-        //header da página
+
+        if (!empty($this->scripts)) {
+            foreach ($this->scripts as $js) {
+                echo '<script type="text/javascript" src="', $js, '"></script>', "\n";
+            }
+        }
         return ob_get_clean();
     }
 
-    //Diogo
     public function getInitScriptSection() {
         ob_start();
-        //TODO: criar o HTML necessário para colocar todo o código de iniciação 
-        //dentro da função jQuery
+
+        if (!empty($this->jsInit)) {
+            echo '<script type="text/javascript">';
+            echo '$(function() {';
+            foreach ($this->jsInit as $js) {
+                echo $js, "\n";
+            }
+            echo '});';
+            echo '</script>';
+        }
         return ob_get_clean();
     }
 
