@@ -7,7 +7,7 @@ class Game extends Controller {
     }
 
     public function index() {
-        
+        echo 'No metodo index do game';
     }
 
 }

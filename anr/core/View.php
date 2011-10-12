@@ -32,7 +32,7 @@ class View {
 
     //Jorge
     public function createURL($path, $params = array()) {
-        //TODO: devolver um URL completo para o controlador/método e parâmetros passados
+    //TODO: devolver um URL completo para o controlador/método e parâmetros passados
     }
 
     public function includeViewFile($name) {
@@ -43,20 +43,20 @@ class View {
 
     //Jorge
     public function registerScript($script, $pos = 2) {
-        //TODO: colocar o script indicado na variável adequada
-        //implementar sistema de prioridade, !
+    //TODO: colocar o script indicado na variável adequada
+    //implementar sistema de prioridade, !
     }
 
     //Pedro
     public function registerStyle($style) {
-        //TODO: registar o ficheiro CSS, implementar sistema de prioridade, !
+    //TODO: registar o ficheiro CSS, implementar sistema de prioridade, !
     }
 
     //Jorge
     public function getStyleSection() {
         ob_start();
-        //TODO: criar o HTML necessário para colocar todos os ficheiros CSS no 
-        //header da página.
+    //TODO: criar o HTML necessário para colocar todos os ficheiros CSS no 
+    //header da página.
         return ob_get_clean();
     }
 
@@ -68,19 +68,26 @@ class View {
         return ob_get_clean();
     }
 
-    //Diogo
     public function getInitScriptSection() {
         ob_start();
-        //TODO: criar o HTML necessário para colocar todo o código de iniciação 
-        //dentro da função jQuery
+
+        if (!empty($this->jsInit)) {
+            echo '<script type="text/javascript">';
+            echo '$(function() {';
+            foreach ($this->jsInit as $js) {
+                echo $js, "\n";
+            }
+            echo '});';
+            echo '</script>';
+        }
         return ob_get_clean();
     }
 
     //Jorge
     public function getEndScriptSection() {
         ob_start();
-        //TODO: criar o HTML necessário para colocar todo o código de iniciação 
-        //no fim da página
+    //TODO: criar o HTML necessário para colocar todo o código de iniciação 
+    //no fim da página
         return ob_get_clean();
     }
 

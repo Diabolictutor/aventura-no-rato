@@ -5,6 +5,8 @@
         <meta charset="utf-8" />
         <link href="_resources/css/base.css" rel="stylesheet" type="text/css" />
         <link href="_resources/css/game.css" rel="stylesheet" type="text/css" />
+        
+        <?php echo $this->getInitScriptSection(); ?>
     </head>
     <body>
         <div id="top">
