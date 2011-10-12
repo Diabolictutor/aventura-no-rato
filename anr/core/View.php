@@ -47,9 +47,8 @@ class View {
         //implementar sistema de prioridade, !
     }
 
-    //Pedro
     public function registerStyle($style) {
-        //TODO: registar o ficheiro CSS, implementar sistema de prioridade, !
+        $this->styles[] = $style;
     }
 
     //Jorge
@@ -60,11 +59,14 @@ class View {
         return ob_get_clean();
     }
 
-    //Pedro
     public function getScriptSection() {
         ob_start();
-        //TODO: criar HTML necessário para colocar todos os ficheiros JS no 
-        //header da página
+
+        if (!empty($this->scripts)) {
+            foreach ($this->scripts as $js) {
+                echo '<script type="text/javascript" src="', $js, '"></script>', "\n";
+            }
+        }
         return ob_get_clean();
     }
 
