@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 
+ */
 class System {
 
     private $url;
@@ -10,6 +13,9 @@ class System {
         $this->url = self::findURL();
     }
 
+    /**
+     * 
+     */
     public function execute() {
         $this->route();
 
@@ -20,6 +26,9 @@ class System {
         $this->controller->$a();
     }
 
+    /**
+     * 
+     */
     private function route() {
         //r - route; c - controller; a - action;
 

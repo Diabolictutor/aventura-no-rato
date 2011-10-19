@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 
+ */
 function __autoload($name) {
     global $autoloadCache;
 

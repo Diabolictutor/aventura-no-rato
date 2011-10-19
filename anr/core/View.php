@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 
+ */
 class View {
 
     public static $POS_INIT = 1;
@@ -67,7 +70,11 @@ class View {
             include $name;
     }
 
-    //Jorge
+    /**
+     *
+     * @param string $script
+     * @param integer $pos 
+     */
     public function registerScript($script, $pos = 2) {
 
         if ($pos == self::$POS_END) {
@@ -79,6 +86,10 @@ class View {
         }
     }
 
+    /**
+     *
+     * @param string $style 
+     */
     public function registerStyle($style) {
         $this->styles[] = $style;
     }
@@ -102,17 +113,21 @@ class View {
         return ob_get_clean();
     }
 
+    /**
+     *
+     * @return type 
+     */
     public function getInitScriptSection() {
         ob_start();
 
         if (!empty($this->jsInit)) {
-            echo '<script type="text/javascript">';
-            echo '$(function() {';
+            echo '<script type="text/javascript">', "\n";
+            echo '$(function() {', "\n";
             foreach ($this->jsInit as $js) {
                 echo $js, "\n";
             }
-            echo '});';
-            echo '</script>';
+            echo '});', "\n";
+            echo '</script>', "\n";
         }
         return ob_get_clean();
     }
@@ -125,6 +140,10 @@ class View {
         return ob_get_clean();
     }
 
+    /**
+     *
+     * @return type 
+     */
     public function getContentSection() {
         ob_start();
         foreach ($this->parcials as $parcial) {
@@ -134,6 +153,13 @@ class View {
         return ob_get_clean();
     }
 
+    /**
+     *
+     * @param type $view
+     * @param type $data
+     * @param type $return
+     * @return type 
+     */
     public function render($view, $data = array(), $return = false) {
         if (empty($view)) {
             throw new Exception('Invalid view.');
@@ -161,6 +187,9 @@ class View {
         $this->output();
     }
 
+    /**
+     * 
+     */
     private function output() {
         $path = VIEWROOT . '/layouts/' . $this->layout . '.php';
         if (is_file($path)) {

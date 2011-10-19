@@ -7,8 +7,7 @@ class Forum extends Controller {
     }
 
     public function index() {
-        //$this->render('index');
-        echo "no método index do fórum";
+        $this->render('forum/index');
     }
 
 }
