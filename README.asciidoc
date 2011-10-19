@@ -1,0 +1,39 @@
+Aventura no Rato!
+=================
+
+About
+-----
+
+*Aventura no Rato!* is a browser based, adventure type, game developed by three 
+students learning the PHP programming language. The goal is to develop a complete 
+system that includes the game, a forum system, a website and some statistical 
+information.
+
+With this project the students will learn the basic tasks associated with software 
+development, use helping tools like Git and learn how to develop in PHP and how a 
+complete and mid-size system is built.
+
+The objectives involve:
+[horizontal]
+Development:: Understand and use correct development methods and tools, this 
+includes using version control systems (Git), properly document the code, auxiliary
+tools and scripts (bash scripts for database automation, packaging, etc), properly 
+structure project files.
+
+Code:: Learn PHP using objected oriented approaches, create boostramp files and 
+basic template system with separation between request controllers and views. 
+Learn SQL, JS and CSS in a very basic way.
+
+Fun:: Develop a project that could be fun to create and fun to use and something 
+that can be shown to friends :).
+
+Releases
+--------
+
+At the moment there is no release available.
+
+License
+-------
+
+The project is free software released under the _GNU Affero General Public License_, 
+please see http://www.gnu.org/licenses/agpl.htm for more information of the contained license file.
