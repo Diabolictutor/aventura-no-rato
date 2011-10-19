@@ -1,14 +1,12 @@
 #site {
-    background-color: gray;
 }
 
 #content {
 }
+
 #content h2 {
-    font-size: 50px;
 }
 #content h3 {
-    font-size: 35px;
 }
 
 #about {
@@ -16,15 +14,15 @@
 }
 
 #news {
-    height: 600px;
+    min-height: 350px;
     width: 50%;
-    background-color: red;
     float: left;
+    background-color: red;
 }
 
 #random {
-    height: 600px;
+    min-height: 350px;
     width: 50%;
-    background-color: blue;
     float: left;
+    background-color: blue;
 }

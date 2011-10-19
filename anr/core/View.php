@@ -90,6 +90,11 @@ class View {
         }
     }
 
+    /**
+     *
+     * @param string $scriptFile
+     * @param integer $pos 
+     */
     public function registerScriptFile($scriptFile, $pos = 2) {
 
         if ($pos == self::$POS_END) {
@@ -107,7 +112,6 @@ class View {
         $this->styles[] = $style;
     }
 
-//Jorge
     public function getStyleSection() {
         ob_start();
 
@@ -120,6 +124,10 @@ class View {
         return ob_get_clean();
     }
 
+    /**
+     *
+     * @return string
+     */
     public function getScriptSection() {
         ob_start();
 
@@ -138,7 +146,7 @@ class View {
 
     /**
      *
-     * @return type 
+     * @return string 
      */
     public function getInitScriptSection() {
         ob_start();
@@ -155,7 +163,10 @@ class View {
         return ob_get_clean();
     }
 
-//Jorge
+    /**
+     *
+     * @return string
+     */
     public function getEndScriptSection() {
         ob_start();
 
@@ -176,7 +187,7 @@ class View {
 
     /**
      *
-     * @return type 
+     * @return string 
      */
     public function getContentSection() {
         ob_start();

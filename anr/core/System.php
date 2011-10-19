@@ -40,7 +40,7 @@ class System {
 
         if (!isset($_GET['r']) && isset($_GET['c']) && class_exists($_GET['c'])) {
             $this->controller = $_GET['c'];
-            $action = isset($_GET['a']) ? $_GET['a'] : 'index';
+            $this->action = isset($_GET['a']) ? $_GET['a'] : 'index';
 
             return;
         }
@@ -55,7 +55,7 @@ class System {
         if (isset($_GET['r'])) {
             $this->controller = isset($_GET['c']) && class_exists($_GET['c']) ? $_GET['c'] : ucfirst($_GET['r']);
         }
-        $action = isset($_GET['a']) && method_exists($this->controller, $_GET['a']) ? $_GET['a'] : 'index';
+        $this->action = isset($_GET['a']) && method_exists($this->controller, $_GET['a']) ? $_GET['a'] : 'index';
 
         unset($_GET['r'], $_GET['c'], $_GET['a']);
     }

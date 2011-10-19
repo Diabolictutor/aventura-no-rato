@@ -13,9 +13,9 @@ abstract class Controller {
 
     /**
      *
-     * @param type $view
-     * @param type $data
-     * @param type $return 
+     * @param View $view
+     * @param array $data
+     * @param boolean $return 
      * 
      * @see View::render()
      */
@@ -25,7 +25,7 @@ abstract class Controller {
 
     /**
      *
-     * @return type 
+     * @return View 
      */
     public function getView() {
         return $this->view;
