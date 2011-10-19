@@ -1,7 +1,20 @@
--- Pedro: criar tabela para registar dados de CMS (ContentSection):
--- * ID, chave primária
--- * descrição, texto com 255 caracteres, obrigatório
--- * conteúdo, texto sem limite (text), obrigatório
--- * data de última modificação, apenas data, obrigatório e automático
+CREATE TABLE `ContentSection` (
+`contentID` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT ,
+`date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+`description` VARCHAR( 255 ) NOT NULL ,
+`content` TEXT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 ;
 
--- Pedro: criar table de personagens
+CREATE TABLE `Character` (
+`characterID` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT ,
+`name` VARCHAR( 255 ) NOT NULL ,
+`level` SMALLINT NOT NULL ,
+`weight` SMALLINT NOT NULL ,
+`strenght` SMALLINT NOT NULL ,
+`defense` SMALLINT NOT NULL ,
+`intellect` SMALLINT NOT NULL ,
+`luck` SMALLINT NOT NULL ,
+`health` SMALLINT NOT NULL ,
+`userID` INT UNSIGNED NOT NULL ,
+CONSTRAINT `fkCharacterUser` FOREIGN KEY (`userID`) REFERENCES `User`(`userID`) 
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 ;

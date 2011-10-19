@@ -10,5 +10,13 @@ class Forum extends Controller {
         $this->render('forum/index');
     }
 
+    public function search() {
+        $this->render('forum/search');
+    }
+
+    public function searchResults() {
+        $this->render('forum/search-results');
+    }
+
 }
 
