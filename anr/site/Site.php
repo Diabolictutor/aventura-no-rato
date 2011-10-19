@@ -7,7 +7,7 @@ class Site extends Controller {
     }
 
     public function index() {
-        $this->render('site/index');
+        $this->render('site/home');
     }
 
 }

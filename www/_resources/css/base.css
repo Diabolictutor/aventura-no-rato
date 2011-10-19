@@ -8,7 +8,7 @@
 body {
     font-size: 12px;
     color: #000;
-    background-color: #FFF;
+    background-color: #555;
     text-align: justify;
 }
 
@@ -75,4 +75,8 @@ a, a:visited {
 
 #footer {
     text-align: center;
+}
+
+.clear{
+    clear: both;
 }
