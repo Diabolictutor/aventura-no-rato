@@ -8,7 +8,7 @@ class View {
     public static $POS_INIT = 1;
     public static $POS_HEAD = 2;
     public static $POS_END = 3;
-    //
+//
     private $layout;
     private $scripts;
     private $styles;
@@ -17,6 +17,8 @@ class View {
     private $data;
     private $parcials;
     private $controller;
+    private $jsEndFiles;
+    private $scriptFiles;
 
     public function __construct($controller, $layout = 'site') {
         $this->controller = $controller;
@@ -27,6 +29,8 @@ class View {
         $this->jsEnd = array();
         $this->data = array();
         $this->parcials = array();
+        $this->jsEndFiles = array();
+        $this->scriptFiles = array();
     }
 
     public function __get($name) {
@@ -78,11 +82,20 @@ class View {
     public function registerScript($script, $pos = 2) {
 
         if ($pos == self::$POS_END) {
-            $this->jsEnd[] = $script();
+            $this->jsEnd[] = $script;
         } else if ($pos == self::$POS_INIT) {
-            $this->jsInit[] = $script();
+            $this->jsInit[] = $script;
         } else if ($pos == self::$POS_HEAD) {
-            $this->scripts[] = $script();
+            $this->scripts[] = $script;
+        }
+    }
+
+    public function registerScriptFile($scriptFile, $pos = 2) {
+
+        if ($pos == self::$POS_END) {
+            $this->jsEndFiles[] = $scriptFile;
+        } else if ($pos == self::$POS_HEAD) {
+            $this->scriptFiles[] = $scriptFile;
         }
     }
 
@@ -94,20 +107,30 @@ class View {
         $this->styles[] = $style;
     }
 
-    //Jorge
+//Jorge
     public function getStyleSection() {
         ob_start();
-        //TODO: criar o HTML necessário para colocar todos os ficheiros CSS no 
-        //header da página.
+
+        if (!empty($this->styles)) {
+            foreach ($this->styles as $st) {
+                echo '<link rel="stylesheet" type="text/css" href="', $st, '" />', "\n";
+            }
+        }
+
         return ob_get_clean();
     }
 
     public function getScriptSection() {
         ob_start();
 
-        if (!empty($this->scripts)) {
-            foreach ($this->scripts as $js) {
+        if (!empty($this->jsEndFiles)) {
+            foreach ($this->jsEndFiles as $js) {
                 echo '<script type="text/javascript" src="', $js, '"></script>', "\n";
+            }
+        }
+        if (!empty($this->jsEndFiles)) {
+            foreach ($this->jsEndFiles as $js) {
+                echo '<script type="text/javascript">', $js, '</script>', "\n";
             }
         }
         return ob_get_clean();
@@ -132,12 +155,23 @@ class View {
         return ob_get_clean();
     }
 
-    //Jorge
+//Jorge
     public function getEndScriptSection() {
         ob_start();
-        //TODO: criar o HTML necessário para colocar todo o código de iniciação 
-        //no fim da página
-        return ob_get_clean();
+
+        if (!empty($this->scriptFiles)) {
+            foreach ($this->scriptFiles as $js) {
+                echo '<script type="text/javascript" src="', $js, '"></script>', "\n";
+            }
+        }
+        if (!empty($this->scripts)) {
+            foreach ($this->scripts as $js) {
+                echo '<script type="text/javascript">', $js, '</script>', "\n";
+            }
+
+
+            return ob_get_clean();
+        }
     }
 
     /**
