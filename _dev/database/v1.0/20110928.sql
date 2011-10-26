@@ -16,18 +16,18 @@
 -- You should have received a copy of the GNU Affero General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
--- //TODO: Diogo: Alterar a tabela user e adicionar os campos:
--- * grupo, campo inteiro que pode levar os valores 1 ou 2, com o valor 1 por omissão, valor obrigatório
--- * assinatura, campo de texto com um máximo de 255 caracteres, valor facultativo
--- * website, campo de texto com um máximo de 255 caracteres, valor facultativo
--- * data de último login, data e hora, valor obrigatório e automático
--- * activo, permite indicar se um utilizador está activo ou não, valores 0 ou 1, 1 por omissão, valor obrigatório
--- * todas as opções que considerares importantes para o fórum
 CREATE TABLE `User` (
 `userID` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT ,
 `email` VARCHAR( 255 ) NOT NULL UNIQUE ,
 `password` VARCHAR( 40 ) NOT NULL ,
-`name` VARCHAR( 255 ) NULL
+`name` VARCHAR( 255 ) NULL ,
+`group` TINYINT NOT NULL DEFAULT 1 ,
+`signature` VARCHAR( 255 ) NULL ,
+`website` VARCHAR( 255 ) NULL ,
+`lastLogin` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+`active` TINYINT NOT NULL DEFAULT 1 ,
+`avatar` VARCHAR( 255 ) NULL ,
+`postPerPage` INT NOT NULL DEFAULT 0 
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8 ;
 
 CREATE TABLE `Board` (
