@@ -1,7 +1,12 @@
-<?php $this->registerStyle('_resources/css/search.css'); ?>
+<?php $this->registerStyle('_resources/css/.css'); ?>
 
 <form action="#" method="POST">
-    <label for="search">Search:</label>
-    <input type="text" name="search" id="search"/>
+    <fieldset>
+        <legend>Search:</legend>
+        <label for="Edit">Text:</label>
+        <input type="text" name="Search" id="search" class="text" />
+       
+        <input type="submit" />
+    </fieldset>
 </form>
 
