@@ -5,7 +5,10 @@
         <meta charset="utf-8" />
         <link href="_resources/css/base.css" rel="stylesheet" type="text/css" />
         <link href="_resources/css/game.css" rel="stylesheet" type="text/css" />
-        
+        <link href="_resources/css/black-tie/jquery-ui-full.css" rel="stylesheet" type="text/css"/>
+        <script src="_resources/js/jquery.min.js" type="text/javascript"></script>
+        <script src="_resources/js/jquery-ui-full.min.js" type="text/javascript"></script>
+
         <?php echo $this->getInitScriptSection(); ?>
     </head>
     <body>
