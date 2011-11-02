@@ -36,6 +36,14 @@ class Forum extends Controller {
     public function searchResults() {
         $this->render('forum/search-results');
     }
+    
+    public function board(){
+        $this->render('forum/board');
+    }
+    
+    public function thread(){
+        $this->render('forum/thread');
+    }
 
 }
 
