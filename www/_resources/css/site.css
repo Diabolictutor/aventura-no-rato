@@ -75,10 +75,29 @@
     
 }
 
+
 .char-name{
     
 }
 
 .char-level{
     
+}
+
+
+#aboutproject{
+    background-color:#ffeb80;
+    width:50%;   
+}
+
+
+
+#statistics{
+    background-color:deepskyblue;
+    width:50%;   
+}
+
+#player-list{
+    background-color:darkseagreen;
+    width:50%;   
 }

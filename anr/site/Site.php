@@ -28,5 +28,10 @@ class Site extends Controller {
     public function index() {
         $this->render('site/home');
     }
+    
+     public function statsSummary() {
+        $this->render('site/statistics-summary');
+     }
+    
 
 }
