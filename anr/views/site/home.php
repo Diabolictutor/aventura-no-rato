@@ -4,13 +4,26 @@
     <p>Proin nulla ante, faucibus eget interdum sed, euismod sed diam. In pretium tincidunt augue, sodales hendrerit elit pellentesque sit amet. Nulla vitae facilisis diam. Proin risus elit, bibendum ut volutpat nec, venenatis et urna. Aenean id mi felis. Sed molestie laoreet pulvinar. In mattis blandit nisi sed mattis. Quisque eu metus et nunc mollis molestie. Ut sit amet orci quam.</p>
 </div>
 <hr />
-<div id="news">
+<div id="news" style="text-align:left;">
     <h3>Latest Topics</h3>
     <ul>
-        <li></li>
+        <li>"Topic 1" by User (Wednesday, 24/10/2010)<br/>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</li>
+        <li>"Topic 1" by User (Wednesday, 24/10/2010)<br/>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</li>
+        <li>"Topic 1" by User (Wednesday, 24/10/2010)<br/>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</li>
+        <li>"Topic 1" by User (Wednesday, 24/10/2010)<br/>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</li>
     </ul>
 </div>
-<div id="random">
-
+<div id="random" style="text-align:center;">
+    <h3>Random Character</h3>
+    "Character Name"
+    <div>
+        <div style="height:250px;width:200px;border:1px solid black;margin:0 auto;float:left;">
+        </div>
+        <div style="height:250px;width:200px;text-align:center;float:left;">
+            INFORMAÇAO
+        </div>
+        <div style="clear:both;">
+        </div>
+    </div>
 </div>
 <div class="clear"></div>
