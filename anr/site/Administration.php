@@ -32,5 +32,13 @@ class Administration extends Controller {
     public function forum() {
         $this->render('administration/forum');
     }
+    
+    public function cms() {
+        $this->render('administration/cms');
+    }
+    
+    public function layoutEdit() {
+        $this->render('administration/layoutEdit');
+    }
 
 }
