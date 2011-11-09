@@ -41,4 +41,36 @@ class Administration extends Controller {
         $this->render('administration/layoutEdit');
     }
 
+    public function editBoard() {
+        if (isset($_GET['boardID']) && intval($_GET['boardID']) != 0) {
+            $board = Board::model()->findByPk($_GET['boardID']);
+        } else {
+            $board = new Board();
+        }
+
+        if ($_POST['Board']) {
+            $board->title = $_POST['title'];
+            $board->position = $_POST['position'];
+
+            if ($board->save()) {
+                //TODO: redirect code...
+            }
+        }
+
+        $this->render('administration/edit-board', array('board' => $board));
+    }
+
+    public function listBoard() {
+        $boards = Board::model()->findAll();
+        
+        $this->render('administration/forum', array('boards' => $boards));
+        
+        
+        
+    }
+
+    public function editTopic() {
+        
+    }
+
 }

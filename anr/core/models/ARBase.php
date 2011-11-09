@@ -129,5 +129,7 @@ abstract class ARBase {
 
     public abstract function refresh();
 
-    public abstract static function model();
+    public static function model() {
+        
+    }
 }
