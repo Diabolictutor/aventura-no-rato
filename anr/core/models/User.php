@@ -30,6 +30,7 @@
  * @property $lastLogin;
  * @property $active;
  * @property $avatar;
+ * @property $postPerPage;
  */
 class User extends ARBase {
 
@@ -101,19 +102,86 @@ class User extends ARBase {
         return false;
     }
 
+    /**
+     *
+     * @param type $criteria
+     * @param type $fields
+     * 
+     * @return User 
+     */
     public function find($criteria = '', $fields = '*') {
-        
+
+        $result = null;
+
+        $where = '';
+        if ($criteria != '') {
+            $where = 'WHERE ' . $criteria;
+        }
+        $query = sprintf("SELECT %s FROM %s %s LIMIT 1", $field, $this->table, $where);
+
+        if ($this->connect()) {
+            if (($resource = mysql_query($query)) && mysql_affected_rows() > 0) {
+                $result = mysql_fetch_object($resource, 'User');
+                mysql_free_result($resource);
+            }
+            $this->disconnect();
+        }
+
+        return $result;
     }
 
+    /**
+     *
+     * @param type $criteria
+     * @param type $fields
+     * @return User[]
+     */
     public function findAll($criteria = '', $fields = '*') {
-        
-    }
+        $found = array();
 
+        $where = '';
+        if ($criteria != '') {
+            $where = 'WHERE ' . $criteria;
+        }
+        $query = sprintf("SELECT %s FROM %s %s", $field, $this->table, $where);
+
+        if ($this->connect()) {
+            if (($resource = mysql_query($query))) {
+                while (($result = mysql_fetch_object($resource, 'User')) !== null) {
+                    $found[] = $result;
+                }
+                mysql_free_result($resource);
+            }
+            $this->disconnect();
+        }
+
+        return $found;
+    }
+    
+    /**
+     *
+     * @param type $key
+     * @param type $fields
+     * @return User
+     */
     public function findByPk($key, $fields = '*') {
-        
+
+        return $this->find('userId = ' . (int) $key);
     }
 
     public function refresh() {
+        $temp = $this->find('userId = ' . (int) $this->userID);
+        
+        $this->email = $temp->email;
+        $this->password = $temp->password;
+        $this->name = $temp->name;
+        $this->group = $temp->group;
+        $this->signature = $temp->signature;
+        $this->website = $temp->website;
+        $this->lastLogin = $temp->lastLogin;
+        $this->active = $temp->active;
+        $this->avatar = $temp->avatar;
+        $this->postPerPage = $temp->postPerPage;
         
     }
 

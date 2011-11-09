@@ -1,5 +1,5 @@
 <div id="register">
-    <form action="index.php" method="POST">
+    <form action="<?php echo $this->createURL(array('c' => 'register')); ?>" method="POST">
         <fieldset>
             <legend>Register</legend>
             <p>
