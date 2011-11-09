@@ -59,18 +59,18 @@ class View {
      * @param array $params
      * @return string 
      */
-    public function createURL($path, $params = array()) {
+    public function createURL($path = array(), $params = array()) {
         $ps = array();
         if (isset($path['r'])) {
-            $ps[] = $path['r'];
+            $ps[] = 'r=' . $path['r'];
         }
 
         if (isset($path['c'])) {
-            $ps[] = $path['c'];
+            $ps[] = 'c=' . $path['c'];
         }
 
         if (isset($path['a'])) {
-            $ps[] = $path['a'];
+            $ps[] = 'a=' . $path['a'];
         }
 
         foreach ($params as $key => $value) {
@@ -81,7 +81,7 @@ class View {
             return System::app()->getURL();
         }
 
-        return System::app()->getURL() . '/index.php?' . implode('&', $ps);
+        return System::app()->getURL() . 'index.php?' . implode('&', $ps);
     }
 
     public function includeViewFile($name) {
