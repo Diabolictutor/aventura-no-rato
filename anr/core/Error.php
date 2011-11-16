@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
  */
 
-class Forum extends Controller {
+class Error extends Controller {
 
     public function __construct() {
         parent::__construct();
