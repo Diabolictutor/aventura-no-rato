@@ -48,6 +48,8 @@ class User extends ARBase {
 
     public function __construct() {
         parent::__construct();
+        
+        $this->group = 1;
     }
 
     public function save() {
@@ -67,9 +69,9 @@ class User extends ARBase {
                     , $this->signature, $this->website, $this->avatar, $this->postPerPage);
 
             if ($this->connect()) {
-                $this->disconnect();
                 if (mysql_query($insert) && mysql_affected_rows() == 1) {
                     $this->userID = mysql_insert_id();
+                    $this->disconnect();
                     return true;
                 }
             }
@@ -117,7 +119,7 @@ class User extends ARBase {
         if ($criteria != '') {
             $where = 'WHERE ' . $criteria;
         }
-        $query = sprintf("SELECT %s FROM %s %s LIMIT 1", $field, $this->table, $where);
+        $query = sprintf("SELECT %s FROM %s %s LIMIT 1", $fields, $this->table, $where);
 
         if ($this->connect()) {
             if (($resource = mysql_query($query)) && mysql_affected_rows() > 0) {
@@ -143,7 +145,7 @@ class User extends ARBase {
         if ($criteria != '') {
             $where = 'WHERE ' . $criteria;
         }
-        $query = sprintf("SELECT %s FROM %s %s", $field, $this->table, $where);
+        $query = sprintf("SELECT %s FROM %s %s", $fields, $this->table, $where);
 
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {

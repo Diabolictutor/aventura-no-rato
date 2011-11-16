@@ -28,10 +28,49 @@ class Site extends Controller {
     public function index() {
         $this->render('site/home');
     }
-    
-     public function statsSummary() {
+
+    public function statsSummary() {
         $this->render('site/statistics-summary');
-     }
-    
+    }
+
+    public function login() {
+
+        if (isset($_POST['register'])) {
+            if (!isset($_POST['email']) || !isset($_POST['name']) || !isset($_POST['pw']) || !isset($_POST['pw2'])) {
+                $error[] = 'Fill all the fields. Missing fields:';
+                if (!isset($_POST['email'])) {
+                    $error[] = 'Email';
+                }
+                if (!isset($_POST['name'])) {
+                    $error[] = 'Name';
+                }
+                if (!isset($_POST['pw'])) {
+                    $error[] = 'Password';
+                }
+                if (!isset($_POST['pw2'])) {
+                    $error[] = 'Password Confirmation';
+                }
+            } else {
+                $pass1 = $_POST['pw'];
+                $pass2 = $_POST['pw2'];
+                if ($pass1 !== $pass2) {
+                    $error[] = 'as passwords estão diferentes.';
+                } else {
+                    $user = new User();
+
+                    $user->email = $_POST['email'];
+                    $user->password = $pass1;
+                    $user->name = $_POST['name'];
+
+                    $user->save();
+                }
+            }
+        } else if (isset($_POST['login'])) {
+            
+        }
+
+
+        $this->render('site/login', array('error' => $error));
+    }
 
 }
