@@ -38,7 +38,7 @@ class Administration extends Controller {
     }
     
     public function layoutEdit() {
-        $this->render('administration/layoutEdit');
+        $this->render('administration/layout-edit');
     }
 
     public function editBoard() {
