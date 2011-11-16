@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * property $boardID;
+ * property  $title;
+ * property  $position;
+ */
 class Board extends ARBase {
 
     public $boardID;
@@ -11,23 +16,101 @@ class Board extends ARBase {
     }
 
     public function find($criteria = '', $fields = '*') {
-        
+        $result = null;
+
+        $where = '';
+        if ($criteria != '') {
+            $where = 'WHERE ' . $criteria;
+        }
+        $query = sprintf("SELECT %s FROM %s %s LIMIT 1", $fields, $this->table, $where);
+
+        if ($this->connect()) {
+            if (($resource = mysql_query($query)) && mysql_affected_rows() > 0) {
+                $result = mysql_fetch_object($resource, 'Board');
+                mysql_free_result($resource);
+            }
+            $this->disconnect();
+        }
+
+        return $result;
     }
 
+    /**
+     *
+     * @param type $criteria
+     * @param type $fields
+     * @return User[]
+     */
     public function findAll($criteria = '', $fields = '*') {
-        
+        $found = array();
+
+        $where = 'WHERE';
+        if ($criteria != '') {
+            $where = 'WHERE ' . $criteria;
+        }
+        $query = sprintf("SELECT %s FROM %s %s", $fields, $this->table, $where);
+
+        if ($this->connect()) {
+            if (($resource = mysql_query($query))) {
+                while (($result = mysql_fetch_object($resource, 'Board')) !== null) {
+                    $found[] = $result;
+                }
+                mysql_free_result($resource);
+            }
+            $this->disconnect();
+        }
+
+        return $found;
     }
 
     public function findByPk($key, $fields = '*') {
-        
+        return $this->find('boardID = ' . (int) $key);
     }
 
     public function refresh() {
-        
+        $temp = $this->find('boardID = ' . (int) $this->boardID);
+
+        $this->boardID = $temp->boardID;
+        $this->title = $temp->title;
+        $this->position = $temp->position21;
     }
 
     public function save() {
-        
+        if ($this->newRecord) {
+            $insert = sprintf("
+                INSERT INTO `Board` (
+                    `boardID`, 
+                    `title`,
+                    `position`) 
+                VALUES (%d, '%s', %d)"
+                    , $this->boardID, $this->title, $this->position);
+
+            if ($this->connect()) {
+
+                if (mysql_query($insert) && mysql_affected_rows() == 1) {
+                    $this->boardID = mysql_insert_id();
+                    $this->disconnect();
+                    return true;
+                }
+            }
+        } else {
+            $update = sprintf("
+                UPDATE `Board` SET 
+                    `boardID` = %d, 
+                    `title` = '%s',
+                    `position` = %d
+                WHERE `boardID` = %d"
+                    , $this->boardID, $this->title, $this->position
+            );
+
+            if ($this->connect()) {
+                if (mysql_query($update) && mysql_affected_rows() == 1) {
+                    return true;
+                }
+                $this->disconnect();
+            }
+        }
+        return false;
     }
 
     public static function model() {

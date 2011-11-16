@@ -30,20 +30,22 @@ class Administration extends Controller {
     }
 
     public function forum() {
-        $this->render('administration/forum');
+        $this->render('administration/forum', array(
+            'boards' => Board::model()->findAll()
+        ));
     }
-    
+
     public function cms() {
         $this->render('administration/cms');
     }
-    
+
     public function layoutEdit() {
         $this->render('administration/layout-edit');
     }
 
     public function editBoard() {
-        if (isset($_GET['boardID']) && intval($_GET['boardID']) != 0) {
-            $board = Board::model()->findByPk($_GET['boardID']);
+        if (isset($_GET['id']) && intval($_GET['id']) != 0) {
+            $board = Board::model()->findByPk($_GET['id']);
         } else {
             $board = new Board();
         }
@@ -62,11 +64,8 @@ class Administration extends Controller {
 
     public function listBoard() {
         $boards = Board::model()->findAll();
-        
+
         $this->render('administration/forum', array('boards' => $boards));
-        
-        
-        
     }
 
     public function editTopic() {
