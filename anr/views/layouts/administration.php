@@ -21,7 +21,7 @@
                     <!-- //TODO: link para conta se autenticado -->
                     <!-- <li><a href="<?php echo $this->createURL(array('a' => 'logout')); ?>" alt="Logout">Logout</a></li> -->
                     <!-- //TODO: Logout se autenticado -->
-                    <li><a href="<?php echo $this->createURL(array('c' => 'login')); ?>" alt="Login">Login</a></li>
+                    <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" alt="Login">Login</a></li>
                 </ul>
             </div>
             <div id="header"></div>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div id="footer">
-            &copy; <?php echo date('Y'); ?>
+            &copy; <?php echo date('Y'); ?> Aventura no Rato!
         </div>
     </body>
 </html>
