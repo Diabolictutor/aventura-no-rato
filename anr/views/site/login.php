@@ -1,4 +1,11 @@
 <div id="login" style="float: left;width: 49%">
+    <?php
+    
+    if(!empty($this->error)){
+        
+    }
+    
+    ?>
     <form action="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" method="POST">
         <fieldset>
             <legend>Login</legend>
@@ -17,6 +24,11 @@
     </form>
 </div>
 <div id="register" style="float: left; width: 49%">
+    <?php
+    
+    
+    
+    ?>
     <form action="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" method="POST">
         <fieldset>
             <legend>Register</legend>
@@ -44,3 +56,4 @@
         <input type="submit" value="Submit" name="register" />
     </form>
 </div>
+<div style="clear:both"></div>
