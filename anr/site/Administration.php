@@ -36,6 +36,8 @@ class Administration extends Controller {
     }
 
     public function cms() {
+        $csections = ContentSection::model()->findAll();
+        
         $this->render('administration/cms');
     }
 

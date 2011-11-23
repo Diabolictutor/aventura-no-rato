@@ -1,6 +1,6 @@
 <?php
 
-class cms extends ARBase {
+class ContentSection extends ARBase {
 
     public $ContentID;
     public $date;
@@ -9,6 +9,8 @@ class cms extends ARBase {
 
     public function __construct() {
         parent::__construct();
+
+        $this->table = 'ContentSection';
     }
 
     public function save() {
@@ -38,6 +40,44 @@ class cms extends ARBase {
                 WHERE `ContentSectionID` = %s"
                     , $this->ContentID, $this->date, $this->description, $this->content);
         }
+    }
+
+    public function find($criteria = '', $fields = '*') {
+        
+    }
+
+    public function findAll($criteria = '', $fields = '*') {
+        $found = array();
+
+        $where = '';
+        if ($criteria != '') {
+            $where = 'WHERE ' . $criteria;
+        }
+        $query = sprintf("SELECT %s FROM %s %s", $fields, $this->table, $where);
+
+        if ($this->connect()) {
+            if (($resource = mysql_query($query))) {
+                while (($result = mysql_fetch_object($resource, 'User')) !== null) {
+                    $found[] = $result;
+                }
+                mysql_free_result($resource);
+            }
+            $this->disconnect();
+        }
+
+        return $found;
+    }
+
+    public function findByPk($key, $fields = '*') {
+        
+    }
+
+    public function refresh() {
+        
+    }
+
+    public static function model() {
+        return new ContentSection();
     }
 
 }
