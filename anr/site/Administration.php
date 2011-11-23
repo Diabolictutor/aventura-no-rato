@@ -44,13 +44,12 @@ class Administration extends Controller {
     }
 
     public function editBoard() {
+        $board = new Board();
         if (isset($_GET['id']) && intval($_GET['id']) != 0) {
             $board = Board::model()->findByPk($_GET['id']);
-        } else {
-            $board = new Board();
         }
 
-        if ($_POST['Board']) {
+        if (isset($_POST['Board'])) {
             $board->title = $_POST['title'];
             $board->position = $_POST['position'];
 

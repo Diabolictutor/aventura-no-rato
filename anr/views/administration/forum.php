@@ -1,8 +1,8 @@
 <div id="board-list">
     <ul>
-        <form action=""> 
-              
-              <input type="submit" value="Insert new board" /></form>
+        <a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'editboard')); ?>">
+           Inserir
+    </a>          
         <?php foreach ($this->boards as $board) { ?>
             <li>
                 <a href="<?php

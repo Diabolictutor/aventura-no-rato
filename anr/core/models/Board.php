@@ -13,6 +13,8 @@ class Board extends ARBase {
 
     public function __construct() {
         parent::__construct();
+        
+        $this->table = 'Board';
     }
 
     public function find($criteria = '', $fields = '*') {
@@ -25,7 +27,7 @@ class Board extends ARBase {
         $query = sprintf("SELECT %s FROM %s %s LIMIT 1", $fields, $this->table, $where);
 
         if ($this->connect()) {
-            if (($resource = mysql_query($query)) && mysql_affected_rows() > 0) {
+            if (($resource = mysql_query($query))) {
                 $result = mysql_fetch_object($resource, 'Board');
                 mysql_free_result($resource);
             }
@@ -44,7 +46,7 @@ class Board extends ARBase {
     public function findAll($criteria = '', $fields = '*') {
         $found = array();
 
-        $where = 'WHERE';
+        $where = '';
         if ($criteria != '') {
             $where = 'WHERE ' . $criteria;
         }
@@ -57,6 +59,7 @@ class Board extends ARBase {
                 }
                 mysql_free_result($resource);
             }
+
             $this->disconnect();
         }
 
@@ -118,3 +121,4 @@ class Board extends ARBase {
     }
 
 }
+
