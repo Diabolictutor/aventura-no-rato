@@ -49,6 +49,7 @@ class User extends ARBase {
     public function __construct() {
         parent::__construct();
         
+        $this->table = 'User';        
         $this->group = 1;
     }
 
@@ -122,7 +123,7 @@ class User extends ARBase {
         $query = sprintf("SELECT %s FROM %s %s LIMIT 1", $fields, $this->table, $where);
 
         if ($this->connect()) {
-            if (($resource = mysql_query($query)) && mysql_affected_rows() > 0) {
+            if (($resource = mysql_query($query))) {
                 $result = mysql_fetch_object($resource, 'User');
                 mysql_free_result($resource);
             }

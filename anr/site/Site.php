@@ -35,8 +35,10 @@ class Site extends Controller {
 
     public function login() {
 
+        $error = array();
+               
         if (isset($_POST['register'])) {
-            if (!isset($_POST['email']) || !isset($_POST['name']) || !isset($_POST['pw']) || !isset($_POST['pw2'])) {
+            if (!isset($_POST['email']) || !isset($_POST['name']) || !isset($_POST['password']) || !isset($_POST['password2'])) {
                 $error[] = 'Fill all the fields. Missing fields:';
                 if (!isset($_POST['email'])) {
                     $error[] = 'Email';
@@ -44,17 +46,17 @@ class Site extends Controller {
                 if (!isset($_POST['name'])) {
                     $error[] = 'Name';
                 }
-                if (!isset($_POST['pw'])) {
+                if (!isset($_POST['password'])) {
                     $error[] = 'Password';
                 }
-                if (!isset($_POST['pw2'])) {
+                if (!isset($_POST['password2'])) {
                     $error[] = 'Password Confirmation';
                 }
             } else {
-                $pass1 = $_POST['pw'];
-                $pass2 = $_POST['pw2'];
+                $pass1 = $_POST['password'];
+                $pass2 = $_POST['password2'];
                 if ($pass1 !== $pass2) {
-                    $error[] = 'as passwords estão diferentes.';
+                    $error[] = 'Password confirmation failed';
                 } else {
                     $user = new User();
 
@@ -65,8 +67,29 @@ class Site extends Controller {
                     $user->save();
                 }
             }
-        } else if (isset($_POST['login'])) {
-            
+        } else if (isset($_POST['login'])) {              
+            if (!isset($_POST['email']) || !isset($_POST['name']) || !isset($_POST['password'])) {
+                $error[] = 'Fill all the fields. Missing fields:';
+                if (!isset($_POST['email'])) {
+                    $error[] = 'Email';
+                    if (!isset($_POST['password'])) {
+                        $error[] = 'Password';
+                    }
+                } else {
+                    $pass = $_POST['password'];
+                    $email = $_POST['email'];
+                    $user = User::model()->find(sprintf("email = '%s'", $email));
+                    
+                    if ($user == NULL) {
+                        $error[] = 'Wrong Username';
+                    } else if ($pass !== $user->password) {
+                        $error[] = 'Wrong Password';
+                    } else {
+                        header('Location: http://localhost/public/aventura_no_rato/www/');
+                        exit;
+                    }
+                }
+            }
         }
 
 

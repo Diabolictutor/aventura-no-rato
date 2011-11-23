@@ -42,9 +42,9 @@ abstract class ARBase {
      */
     public $table;
 
-    public function __construct($newRecord = true) {
+    public function __construct($newRecord = true, $table = __CLASS__) {
         $this->newRecord = $newRecord;
-        $this->table = get_class();
+        $this->table = $table;
     }
 
     /**
