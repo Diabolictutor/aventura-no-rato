@@ -16,6 +16,8 @@
             <div id="mainmenu">
                 <ul>
                     <li class="active"><a href="<?php echo $this->createURL(); ?>" alt="Home">Home</a></li>
+                    <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'about')); ?>" alt="About">About</a></li>
+                    <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'credits')); ?>" alt="Credits">Credits</a></li>
                     <li><a href="<?php echo $this->createURL(array('r' => 'forum',)); ?>" alt="Forum">Forum</a></li>
                     <li><a href="<?php echo $this->createURL(array('r' => 'game')); ?>" alt="Play">Play</a></li>
                     <!-- //TODO: link para conta se autenticado -->
