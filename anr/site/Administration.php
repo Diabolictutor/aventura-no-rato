@@ -30,8 +30,10 @@ class Administration extends Controller {
     }
 
     public function forum() {
+        $boards = Board::model()->findAll();
+            
         $this->render('administration/forum', array(
-            'boards' => Board::model()->findAll()
+            'boards' => $boards
         ));
     }
 

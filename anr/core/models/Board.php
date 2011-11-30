@@ -29,6 +29,7 @@ class Board extends ARBase {
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
                 $result = mysql_fetch_object($resource, 'Board');
+                $result->newRecord = false;
                 mysql_free_result($resource);
             }
             $this->disconnect();
@@ -41,7 +42,7 @@ class Board extends ARBase {
      *
      * @param type $criteria
      * @param type $fields
-     * @return User[]
+     * @return Board[]
      */
     public function findAll($criteria = '', $fields = '*') {
         $found = array();
@@ -51,10 +52,11 @@ class Board extends ARBase {
             $where = 'WHERE ' . $criteria;
         }
         $query = sprintf("SELECT %s FROM %s %s", $fields, $this->table, $where);
-
+       
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
-                while (($result = mysql_fetch_object($resource, 'Board')) !== null) {
+                while (($result = mysql_fetch_object($resource, 'Board')) !== false) {
+                    $result->newRecord = false;                
                     $found[] = $result;
                 }
                 mysql_free_result($resource);
@@ -103,7 +105,7 @@ class Board extends ARBase {
                     `title` = '%s',
                     `position` = %d
                 WHERE `boardID` = %d"
-                    , $this->boardID, $this->title, $this->position
+                    , $this->boardID, $this->title, $this->position,$this->boardID
             );
 
             if ($this->connect()) {
