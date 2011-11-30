@@ -2,7 +2,7 @@
 
 class ContentSection extends ARBase {
 
-    public $ContentID;
+    public $contentID;
     public $date;
     public $description;
     public $content;
@@ -22,7 +22,7 @@ class ContentSection extends ARBase {
                     `description`,
                     `content`)
                 VALUES ('%d', '%d', '%s', '%s')"
-                    , $this->ContentID, $this->date, $this->description, $this->content);
+                    , $this->contentID, $this->date, $this->description, $this->content);
 
             if ($this->connect()) {
                 if (mysql_query($insert) && mysql_affected_rows() == 1) {
@@ -38,12 +38,29 @@ class ContentSection extends ARBase {
                     `description` = '%s',
                     `content` = '%s',
                 WHERE `ContentSectionID` = %s"
-                    , $this->ContentID, $this->date, $this->description, $this->content);
+                    , $this->contentID, $this->date, $this->description, $this->content);
         }
     }
 
     public function find($criteria = '', $fields = '*') {
-        
+        $found;
+
+        $where = '';
+        if ($criteria != '') {
+            $where = ' WHERE ' . $criteria;
+        }
+        $query = sprintf("SELECT %s FROM %s %s", $field, $this->table, $where);
+
+        if ($this->connect()) {
+            if (($resource = mysql_query($query))) {
+                if (($result = mysql_fetch_object($resource, 'User')) !== false) {
+                    $found = $result;
+                }
+                mysql_free_result($resource);
+            }
+            $this->disconnect();
+        }
+        return $found;
     }
 
     public function findAll($criteria = '', $fields = '*') {
@@ -51,13 +68,13 @@ class ContentSection extends ARBase {
 
         $where = '';
         if ($criteria != '') {
-            $where = 'WHERE ' . $criteria;
+            $where = ' WHERE ' . $criteria;
         }
         $query = sprintf("SELECT %s FROM %s %s", $fields, $this->table, $where);
 
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
-                while (($result = mysql_fetch_object($resource, 'User')) !== null) {
+                while (($result = mysql_fetch_object($resource, 'User')) !== false) {
                     $found[] = $result;
                 }
                 mysql_free_result($resource);
@@ -69,11 +86,18 @@ class ContentSection extends ARBase {
     }
 
     public function findByPk($key, $fields = '*') {
-        
+        return $this->find('contentID = ' . (int) $key);
     }
 
     public function refresh() {
-        
+        $temp = $this->findByPk($this->contentID);
+        $this->date = $temp->date;
+
+        $temp = $this->findByPk($this->contentID);
+        $this->description = $temp->description;
+
+        $temp = $this->findByPk($this->contentID);
+        $this->content = $temp->content;
     }
 
     public static function model() {
