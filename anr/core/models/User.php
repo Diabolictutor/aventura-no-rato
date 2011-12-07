@@ -24,7 +24,7 @@
  * @property $email;
  * @property $password;
  * @property $name;
- * @property $group;
+ * @property $admin;
  * @property $signature;
  * @property $website;
  * @property $lastLogin;
@@ -38,7 +38,7 @@ class User extends ARBase {
     public $email;
     public $password;
     public $name;
-    public $group;
+    public $admin;
     public $signature;
     public $website;
     public $lastLogin;
@@ -50,7 +50,6 @@ class User extends ARBase {
         parent::__construct();
 
         $this->table = 'User';
-        $this->group = 1;
     }
 
     public function save() {
@@ -60,13 +59,13 @@ class User extends ARBase {
                     `email`, 
                     `password`,
                     `name`,
-                    `group`,
+                    `admin`,
                     `signature`,
                     `website`,
                     `avatar`,
                     `postPerPage`) 
                 VALUES ('%s', '%s', '%s', %d, '%s', '%s', '%s', %d)"
-                    , $this->email, $this->password, $this->name, $this->group
+                    , $this->email, $this->password, $this->name, $this->admin
                     , $this->signature, $this->website, $this->avatar, $this->postPerPage);
 
             if ($this->connect()) {
@@ -82,14 +81,14 @@ class User extends ARBase {
                     `email` = '%s', 
                     `password` = '%s',
                     `name` = '%s',
-                    `group` = %d,
+                    `admin` = %d,
                     `signature` = '%s',
                     `website` = '%s',
                     `active` = %d,
                     `avatar` = '%s',
                     `postPerPage` = %d
                 WHERE `userID` = %d"
-                    , $this->email, $this->password, $this->name, $this->group
+                    , $this->email, $this->password, $this->name, $this->admin
                     , $this->signature, $this->website, $this->lastLogin, $this->active
                     , $this->avatar, $this->userID
             );
@@ -178,7 +177,7 @@ class User extends ARBase {
         $this->email = $temp->email;
         $this->password = $temp->password;
         $this->name = $temp->name;
-        $this->group = $temp->group;
+        $this->admin = $temp->admin;
         $this->signature = $temp->signature;
         $this->website = $temp->website;
         $this->lastLogin = $temp->lastLogin;

@@ -23,6 +23,10 @@ class Administration extends Controller {
 
     public function __construct() {
         parent::__construct('administration');
+        
+        if (!System::app()->isAdmin()){
+            $this->redirect(array());
+        }
     }
 
     public function index() {
