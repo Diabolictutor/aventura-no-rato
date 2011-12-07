@@ -1,0 +1,1 @@
+ALTER TABLE `User` CHANGE `group` `admin` TINYINT NOT NULL DEFAULT 0 ;

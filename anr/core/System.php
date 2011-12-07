@@ -145,7 +145,7 @@ class System {
         $_SESSION['user'] = (object) array(
                     'id' => $user->userID,
                     'name' => $user->name,
-                    'admin' => $user->group
+                    'admin' => $user->admin
         );
     }
 
@@ -159,6 +159,10 @@ class System {
      */
     public function isGuest() {
         return!isset($_SESSION['user']);
+    }
+
+    public function isAdmin() {
+        return (isset($_SERVER['user']) && ((int) $_SESSION['user']->admin) == 1);
     }
 
 }
