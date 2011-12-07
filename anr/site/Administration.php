@@ -26,12 +26,12 @@ class Administration extends Controller {
     }
 
     public function index() {
-        $this->render('administration/index');
+        $this->render('administration/index', array('vfile' => ''));
     }
 
     public function forum() {
         $boards = Board::model()->findAll();
-            
+
         $this->render('administration/forum', array(
             'boards' => $boards
         ));
@@ -39,7 +39,7 @@ class Administration extends Controller {
 
     public function cms() {
         $csections = ContentSection::model()->findAll();
-        
+
         $this->render('administration/cms');
     }
 
@@ -72,6 +72,10 @@ class Administration extends Controller {
     }
 
     public function editTopic() {
+        
+    }
+
+    public function editUser() {
         
     }
 

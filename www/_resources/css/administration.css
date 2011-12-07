@@ -1,0 +1,18 @@
+.side-menu{
+    float: left;
+    width: 19%;
+}
+
+.side-menu a{
+    width: 100%;
+}
+
+.content{
+    float: left;
+    width: 79%;
+}
+
+.content a{
+
+
+}

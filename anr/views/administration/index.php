@@ -1,6 +1,10 @@
-<div style="text-align:center;">
-    <h2 style="background-color:blue;">Administration</h2>
-    <div style="background-color:lightblue">User Administration</div>
-    <div style="background-color:lightsteelblue;">Forum Administration</div>
-    <div style="background-color:lightblue">CMS</div>
+<div class="side-menu">
+    <h2>Administration</h2>
+    <a href="<?php echo $this->createURL(array('c' => 'administration' , 'a' => 'edituser')); ?>">User Administration</a><br/>
+    <a href="<?php echo $this->createURL(array('c' => 'administration' , 'a' => 'editboard')); ?>">Forum Administration</a><br/>
+    <a href="<?php echo $this->createURL(array('c' => 'administration' , 'a' => 'cms')); ?>">CMS</a>
 </div>
+<div class="content">
+   <?php echo $this->includeViewFile($vfile); ?>
+</div>
+<div style="clear:both;"></div>
