@@ -34,9 +34,11 @@ class Site extends Controller {
     }
 
     public function login() {
+        if (!System::app()->isGuest()) {
+            $this->redirect(array('c' => 'site'));
+        }
 
         $error = array();
-               
         if (isset($_POST['register'])) {
             if (!isset($_POST['email']) || !isset($_POST['name']) || !isset($_POST['password']) || !isset($_POST['password2'])) {
                 $error[] = 'Fill all the fields. Missing fields:';
@@ -61,13 +63,16 @@ class Site extends Controller {
                     $user = new User();
 
                     $user->email = $_POST['email'];
-                    $user->password = $pass1;
+                    $user->password = User::model()->hash($pass1);
                     $user->name = $_POST['name'];
 
-                    $user->save();
+                    if ($user->save()) {
+                        System::app()->authenticateUser($user);
+                        $this->redirect(array('c' => 'site'));
+                    }
                 }
             }
-        } else if (isset($_POST['login'])) {              
+        } else if (isset($_POST['login'])) {
             if (!isset($_POST['email']) || !isset($_POST['name']) || !isset($_POST['password'])) {
                 $error[] = 'Fill all the fields. Missing fields:';
                 if (!isset($_POST['email'])) {
@@ -76,24 +81,29 @@ class Site extends Controller {
                         $error[] = 'Password';
                     }
                 } else {
-                    $pass = $_POST['password'];
+                    $pass = User::model()->hash($_POST['password']);
                     $email = $_POST['email'];
                     $user = User::model()->find(sprintf("email = '%s'", $email));
-                    
+
                     if ($user == NULL) {
                         $error[] = 'Wrong Username';
                     } else if ($pass !== $user->password) {
+                        echo 'pass';
                         $error[] = 'Wrong Password';
                     } else {
-                        header('Location: http://localhost/public/aventura_no_rato/www/');
+                        System::app()->authenticateUser($user);
+                        $this->redirect(array('c' => 'site'));
                         exit;
                     }
                 }
             }
         }
 
-
         $this->render('site/login', array('error' => $error));
     }
 
+    public function logout(){
+        System::app()->clearUser($_SESSION['user']);
+        $this->redirect(array('c' => 'site'));
+    }
 }

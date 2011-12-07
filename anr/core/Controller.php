@@ -46,5 +46,13 @@ abstract class Controller {
     public function getView() {
         return $this->view;
     }
+    
+    public function redirect($path = array(), $params = array()){
+        $url = $this->view->createURL($path, $params);
+        header('Location: ', $url);
+
+    }
+    
+    
 
 }

@@ -2,3 +2,4 @@ nbproject/
 www/config.local.php
 .DS_Store
 Thumbs.db
+/index.php

@@ -48,8 +48,8 @@ class User extends ARBase {
 
     public function __construct() {
         parent::__construct();
-        
-        $this->table = 'User';        
+
+        $this->table = 'User';
         $this->group = 1;
     }
 
@@ -160,7 +160,7 @@ class User extends ARBase {
 
         return $found;
     }
-    
+
     /**
      *
      * @param type $key
@@ -174,7 +174,7 @@ class User extends ARBase {
 
     public function refresh() {
         $temp = $this->find('userId = ' . (int) $this->userID);
-        
+
         $this->email = $temp->email;
         $this->password = $temp->password;
         $this->name = $temp->name;
@@ -185,15 +185,24 @@ class User extends ARBase {
         $this->active = $temp->active;
         $this->avatar = $temp->avatar;
         $this->postPerPage = $temp->postPerPage;
-        
     }
 
     /**
-     *
      * @return User 
      */
     public static function model() {
         return new User();
+    }
+
+    /**
+     * @global string $hash
+     * @param string $password
+     * @return string 
+     */
+    public function hash($password) {
+        global $hash;
+
+        return sha1($password . $hash);
     }
 
 }

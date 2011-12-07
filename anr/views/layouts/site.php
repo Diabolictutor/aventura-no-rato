@@ -20,10 +20,12 @@
                     <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'credits')); ?>" alt="Credits">Credits</a></li>
                     <li><a href="<?php echo $this->createURL(array('r' => 'forum',)); ?>" alt="Forum">Forum</a></li>
                     <li><a href="<?php echo $this->createURL(array('r' => 'game')); ?>" alt="Play">Play</a></li>
-                    <!-- //TODO: link para conta se autenticado -->
-                    <!-- <li><a href="<?php echo $this->createURL(array('a' => 'logout')); ?>" alt="Logout">Logout</a></li> -->
-                    <!-- //TODO: Logout se autenticado -->
-                    <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" alt="Login">Login</a></li>
+                    <?php if (!System::app()->isGuest()) { ?>          
+                        <li><a href="<?php echo $this->createURL(array('c'=> 'account')); ?>" alt="Account">Account</a></li>
+                        <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'logout')); ?>" alt="Logout">Logout</a></li>
+                    <?php } else { ?>
+                        <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" alt="Login">Login</a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <div id="header"></div>

@@ -133,4 +133,32 @@ class System {
         return $this->url;
     }
 
+    /**
+     *
+     * @return stdClass 
+     */
+    public function getUser() {
+        return $_SESSION['user'];
+    }
+
+    public function authenticateUser(User $user) {
+        $_SESSION['user'] = (object) array(
+                    'id' => $user->userID,
+                    'name' => $user->name,
+                    'admin' => $user->group
+        );
+    }
+
+    public function clearUser() {
+        unset($_SESSION['user']);
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+    public function isGuest() {
+        return!isset($_SESSION['user']);
+    }
+
 }

@@ -1,11 +1,7 @@
 <div id="login" style="float: left;width: 49%">
-    <?php
-    
-    if(!empty($this->error)){
-        
-    }
-    
-    ?>
+    <?php if (!empty($this->error)) { ?>
+        <p><?php echo $this->error; ?></p>
+    <?php } ?>
     <form action="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" method="POST">
         <fieldset>
             <legend>Login</legend>
@@ -24,11 +20,9 @@
     </form>
 </div>
 <div id="register" style="float: left; width: 49%">
-    <?php
-    
-    
-    
-    ?>
+    <?php if (!empty($this->error)) { ?>
+        <p><?php echo $this->error; ?></p>
+    <?php } ?>
     <form action="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" method="POST">
         <fieldset>
             <legend>Register</legend>
@@ -36,7 +30,6 @@
                 <label for="email">E-mail:</label>
                 <br />
                 <input type="text" name="email" id="email" />
-            
             <p>
                 <label for="name">Name:</label>
                 <br />
