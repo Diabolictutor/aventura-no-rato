@@ -9,6 +9,7 @@ body {
     font-size: 12px;
     color: #000;
     text-align: justify;
+    background: transparent url(../images/base/paperbgnew.jpg) repeat;
 }
 
 #top {

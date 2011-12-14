@@ -1,3 +1,4 @@
+<!-- //TODO: Css to css file -->
 <div id="login" style="float: left;width: 49%">
     <?php if (!empty($this->error)) { ?>
         <p><?php echo $this->error; ?></p>
@@ -7,16 +8,16 @@
             <legend>Login</legend>
             <p>
                 <label for="email">E-mail:</label>
-                <br />
                 <input type="text" name="email" id="email" />
             </p>
             <p>
                 <label for="pw">Password:</label>
-                <br />
                 <input type="password" name="password" id="pw" />
             </p>
         </fieldset>
-        <input type="submit" value="Submit" name="login" />
+        <p>
+            <input type="submit" value="Submit" name="login" />
+        </p>
     </form>
 </div>
 <div id="register" style="float: left; width: 49%">
@@ -28,25 +29,25 @@
             <legend>Register</legend>
             <p>
                 <label for="email">E-mail:</label>
-                <br />
                 <input type="text" name="email" id="email" />
+            </p>
             <p>
                 <label for="name">Name:</label>
-                <br />
                 <input type="text" name="name" id="name" />
             </p>
             <p>
                 <label for="pw">Password:</label>
-                <br />
                 <input type="password" name="password" id="pw" />
             </p>
             <p>
                 <label for="pw2">Repeat Password:</label>
-                <br />
                 <input type="password" name="password2" id="pw2" />
             </p>
         </fieldset>
-        <input type="submit" value="Submit" name="register" />
+        <p>
+            <input type="submit" value="Submit" name="register" />
+        </p>
     </form>
 </div>
+<!-- //TODO: create/use .clear class -->
 <div style="clear:both"></div>

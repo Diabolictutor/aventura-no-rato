@@ -1,3 +1,4 @@
+<!-- //TODO: css to css file -->
 <div id="about">
     <h2>Aventura no Rato!</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat placerat lobortis. Etiam nec varius sapien. Proin sollicitudin urna id lectus auctor venenatis. Vestibulum vitae lectus nec arcu sagittis lacinia. Aliquam consectetur semper augue, at pretium purus ultrices ac. Quisque suscipit aliquam tortor, vel tempus mauris gravida imperdiet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam auctor suscipit vestibulum. Vestibulum viverra pulvinar leo, et placerat odio tristique ac. Curabitur ullamcorper pellentesque diam, ac ullamcorper erat tincidunt et. Donec sed augue nec est vehicula tempus. Nunc vitae neque leo, in feugiat nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt dui ac urna laoreet euismod. Ut venenatis tortor non metus tristique ac dignissim tortor euismod. Maecenas lectus metus, ultricies ac sagittis convallis, fermentum tincidunt est.</p>
@@ -22,8 +23,7 @@
         <div style="height:250px;width:200px;text-align:center;float:left;">
             INFORMAÇAO
         </div>
-        <div style="clear:both;">
-        </div>
+        <div style="clear:both;"></div>
     </div>
 </div>
 <div class="clear"></div>

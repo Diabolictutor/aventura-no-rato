@@ -1,4 +1,5 @@
 <div id="statistics">
+    <!-- //TODO: Use list items not paragraphs -->
     <p>
         People registered in forum: OVER9000
     </p>

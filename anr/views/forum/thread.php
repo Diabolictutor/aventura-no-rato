@@ -1,3 +1,4 @@
+<!-- //TODO: every css code to a proper css file -->
 <div>
     <h2 style="background-color:green;width:100%;">TITLE</h2>
     <div>

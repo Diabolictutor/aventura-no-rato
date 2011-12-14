@@ -1,18 +1,19 @@
 <div id="edit-character">
-    <form action="index.php" method="POST">
+    <!-- //TODO: proper action for this form -->
+    <form action="#" method="POST">
         <fieldset>
             <legend>Edit Character</legend>
             <p>
                 <label for="name">Name:</label>
-                <br />
                 <input type="text" name="name" id="name" />
-
+            </p>
             <p>
                 <label for="level">Level:</label>
-                <br />
                 <input type="text" name="level" id="level" />
             </p>
-            <input type="submit" value="Submit" />
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
         </fieldset>
     </form>
 </div>

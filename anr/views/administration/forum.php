@@ -1,7 +1,6 @@
 <div id="board-list">
-    <a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'editboard')); ?>">
-        Inserir
-    </a>
+    <!-- //TODO: Proper icon -->
+    <a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'editboard')); ?>">Inserir</a>
     <ul>
         <?php foreach ($this->boards as $board) { ?>
             <li>
