@@ -21,8 +21,20 @@
 
 class View {
 
+    /**
+     * @var int Defines a script position to be the init section inside the HEAD 
+     * tag.
+     */
     public static $POS_INIT = 1;
+
+    /**
+     * @var int Defines a JS file to be included in the HEAD section.
+     */
     public static $POS_HEAD = 2;
+
+    /**
+     * @var int Places JS code in the end of the file, before the closing BODY.
+     */
     public static $POS_END = 3;
 //
     private $layout;
