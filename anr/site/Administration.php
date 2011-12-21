@@ -3,7 +3,7 @@
 /* Administration.php
  * 
  * This file is part of Aventura no Rato! A browser based, adventure type, game.
- * Copyright (C) 2011  Diogo Samuel, Jorge Gonçalves, Pedro Pires e Sérgio Lopes
+ * Copyright (C) 2011  Diogo Alexandre, Jorge Gonçalves, Pedro Pires e Sérgio Lopes
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,32 +23,26 @@ class Administration extends Controller {
 
     public function __construct() {
         parent::__construct('administration');
-        
-        if (!System::app()->isAdmin()){
-            $this->redirect(array());
-        }
+
+        //if (!System::app()->isAdmin()){
+        //    $this->redirect(array());
+        ////}
     }
 
     public function index() {
-        $this->render('administration/index', array('vfile' => ''));
-    }
-
-    public function forum() {
         $boards = Board::model()->findAll();
-
-        $this->render('administration/forum', array(
-            'boards' => $boards
+        $this->render('administration/boards', array(
+            'boards' => $boards,
+            'selection' => 'boards'
         ));
     }
 
     public function cms() {
         $csections = ContentSection::model()->findAll();
-
-        $this->render('administration/cms');
-    }
-
-    public function layoutEdit() {
-        $this->render('administration/layout-edit');
+        $this->render('administration/cms', array(
+            'csections' => $sections,
+            'selection' => 'sections'
+        ));
     }
 
     public function editBoard() {
@@ -67,16 +61,6 @@ class Administration extends Controller {
         }
 
         $this->render('administration/edit-board', array('board' => $board));
-    }
-
-    public function listBoard() {
-        $boards = Board::model()->findAll();
-
-        $this->render('administration/forum', array('boards' => $boards));
-    }
-
-    public function editTopic() {
-        
     }
 
     public function editUser() {

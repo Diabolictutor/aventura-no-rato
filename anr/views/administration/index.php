@@ -1,12 +1,14 @@
 <div class="side-menu">
     <h2>Administration</h2>
-    <!-- //TODO: Use list items not line breaks -->
-    <a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'edituser')); ?>">User Administration</a>
-    <a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'editboard')); ?>">Forum Administration</a>
-    <a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'cms')); ?>">CMS</a>
+    <ul>
+        <li><a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'listboard')); ?>">Board Administration</a></li>
+        <li><a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'editchars')); ?>">Character Administration</a></li>
+        <li><a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'edituser')); ?>">User Administration</a></li>
+        <li><a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'editlayout')); ?>">Layout Administration</a></li>
+        <li><a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'cms')); ?>">CMS</a></li>
+    </ul>
 </div>
 <div class="content">
-    <?php echo $this->includeViewFile($vfile); ?>
+    <?php echo $this->includeViewFile($this->vfile); ?>
 </div>
-<!-- //TODO: create a .clear class -->
-<div style="clear:both;"></div>
+<div class="clear"></div>

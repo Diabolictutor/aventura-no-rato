@@ -12,7 +12,6 @@
     width: 79%;
 }
 
-.content a{
-
-
+.active{
+    background-color: red;
 }

@@ -1,3 +1,4 @@
+<?php echo $this->includeViewFile('administration/_admin-menu'); ?>
 <?php $this->registerScript("$('#tabs').tabs();", View::$POS_INIT); ?>
 
 <div id="tabs">
