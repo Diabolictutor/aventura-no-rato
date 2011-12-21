@@ -25,25 +25,52 @@ class Forum extends Controller {
         parent::__construct('forum');
     }
 
+    /**
+     * Forum root
+     */
     public function index() {
         $this->render('forum/index');
     }
 
+    /**
+     * Topic search action (use in the form action)
+     */
     public function search() {
         $this->render('forum/search');
     }
 
+    /**
+     * Show search results
+     */
     public function searchResults() {
         $this->render('forum/search-results');
     }
-    
-    public function board(){
+
+    /**
+     * Topics for a given board
+     */
+    public function board() {
         $this->render('forum/board');
     }
-    
-    public function thread(){
+
+    /**
+     * Thread data
+     */
+    public function thread() {
+        //carregar todos os posts desta thread (thread ID)
+        //passar a lista para a vista
+        $thread = Thread::model()->findByPk($_GET["id"]);
+        
         $this->render('forum/thread');
     }
-
+    
+    public function reply(){
+        
+        $post = new Post();
+        
+        $post->post = $POST['reply'];
+        
+        $post->save();
+    }
 }
 

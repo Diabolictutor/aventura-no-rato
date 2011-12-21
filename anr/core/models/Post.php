@@ -1,20 +1,25 @@
 <?php
 
 /**
- * property $boardID;
+ * property $postID;
  * property  $title;
  * property  $position;
  */
-class Board extends ARBase {
+class Post extends ARBase {
 
-    public $boardID;
+    public $postID;
+    public $post;
     public $title;
-    public $position;
-
+    public $date;
+    public $postCount;
+    public $visitCount;
+    public $authorID;
+    public $threadID;
+    
     public function __construct() {
         parent::__construct();
         
-        $this->table = 'Board';
+        $this->table = 'Post';
     }
 
     public function find($criteria = '', $fields = '*') {
@@ -28,7 +33,7 @@ class Board extends ARBase {
 
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
-                $result = mysql_fetch_object($resource, 'Board');
+                $result = mysql_fetch_object($resource, 'Post');
                 $result->newRecord = false;
                 mysql_free_result($resource);
             }
@@ -42,7 +47,7 @@ class Board extends ARBase {
      *
      * @param type $criteria
      * @param type $fields
-     * @return Board[]
+     * @return Post[]
      */
     public function findAll($criteria = '', $fields = '*') {
         $found = array();
@@ -55,7 +60,7 @@ class Board extends ARBase {
        
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
-                while (($result = mysql_fetch_object($resource, 'Board')) !== false) {
+                while (($result = mysql_fetch_object($resource, 'Post')) !== false) {
                     $result->newRecord = false;                
                     $found[] = $result;
                 }
@@ -69,43 +74,58 @@ class Board extends ARBase {
     }
 
     public function findByPk($key, $fields = '*') {
-        return $this->find('boardID = ' . (int) $key);
+        return $this->find('postID = ' . (int) $key);
     }
 
     public function refresh() {
-        $temp = $this->find('boardID = ' . (int) $this->boardID);
-
-        $this->boardID = $temp->boardID;
+        $temp = $this->find('postID = ' . (int) $this->postID);
+        
+        $this->postID = $temp->postID;
+        $this->post = $temp->post;
         $this->title = $temp->title;
-        $this->position = $temp->position;
+        $this->date = $temp->date;
+        $this->postCount = $temp->postCount;
+        $this->visitCount = $temp->visitCount;
+        $this->authorID = $temp->authorID;
+        $this->threadID = $temp->threadID;
     }
 
     public function save() {
         if ($this->newRecord) {
             $insert = sprintf("
-                INSERT INTO `Board` (
-                    `boardID`, 
+                INSERT INTO `Post` (
+                    `postID`,
+                    `post`,
                     `title`,
-                    `position`) 
-                VALUES (%d, '%s', %d)"
-                    , $this->boardID, $this->title, $this->position);
+                    `date`, 
+                    `postCount`,
+                    `visitCount`, 
+                    `authorID`, 
+                    `threadID`) 
+                VALUES (%d, '%s', '%s', 's', %d, %d, %d, %d)"
+                    , $this->postID, $this->post, $this->title, $this->date, $this->postCount, $this->visitCount, $this->authorID, $this->threadID);
 
             if ($this->connect()) {
 
                 if (mysql_query($insert) && mysql_affected_rows() == 1) {
-                    $this->boardID = mysql_insert_id();
+                    $this->postID = mysql_insert_id();
                     $this->disconnect();
                     return true;
                 }
             }
         } else {
             $update = sprintf("
-                UPDATE `Board` SET 
-                    `boardID` = %d, 
+                UPDATE `Post` SET 
+                    `postID` = %d,
+                    `post` = '%s',
                     `title` = '%s',
-                    `position` = %d
-                WHERE `boardID` = %d"
-                    , $this->boardID, $this->title, $this->position,$this->boardID
+                    `date` = '%s', 
+                    `postCount` = %d,
+                    `visitCount` = %d, 
+                    `authorID` = '%s', 
+                    `threadID` = %d
+                WHERE `postID` = %d"
+                    , $this->postID, $this->post, $this->title, $this->date, $this->postCount, $this->visitCount, $this->authorID, $this->threadID
             );
 
             if ($this->connect()) {
@@ -119,7 +139,7 @@ class Board extends ARBase {
     }
 
     public static function model() {
-        return new Board();
+        return new Post();
     }
 
 }

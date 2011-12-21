@@ -43,7 +43,9 @@ CREATE TABLE `Thread` (
 `postCount` INT NOT NULL DEFAULT 0 ,
 `visitCount` INT NOT NULL DEFAULT 0 ,
 `authorID` INT UNSIGNED NOT NULL ,
-CONSTRAINT `fkBoardUser` FOREIGN KEY (`authorID`) REFERENCES `User`(`userID`)
+`boardID` INT UNSIGNED NOT NULL ,
+CONSTRAINT `fkThreadUser` FOREIGN KEY (`authorID`) REFERENCES `User`(`userID`),
+CONSTRAINT `fkThreadBoard` FOREIGN KEY (`boardID`) REFERENCES `Board`(`boardID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8 ;
 
 CREATE TABLE `Post` (
@@ -53,8 +55,11 @@ CREATE TABLE `Post` (
 `modified` DATETIME NOT NULL ,
 `authorID` INT UNSIGNED NOT NULL ,
 `modifiedBy` INT UNSIGNED NULL ,
+`post` TEXT NOT NULL,
+`threadID` INT UNSIGNED NULL ,
 CONSTRAINT `fkPostUser1` FOREIGN KEY (`authorID`) REFERENCES `User`(`userID`) ,
-CONSTRAINT `fkPostUser2` FOREIGN KEY (`modifiedBy`) REFERENCES `User`(`userID`)
+CONSTRAINT `fkPostUser2` FOREIGN KEY (`modifiedBy`) REFERENCES `User`(`userID`),
+CONSTRAINT `fkPostThread` FOREIGN KEY (`threadID`) REFERENCES `Thread`(`threadID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8 ;
 
 CREATE TABLE `Shoutbox` (
