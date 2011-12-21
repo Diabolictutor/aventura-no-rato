@@ -28,7 +28,9 @@ class Game extends Controller {
     public function index() {
         $this->render('game/index');
     }
-    
-    public function random(){
-        rand(0, 12);}
+
+    public function charCreation() {
+        $this->render('game/create-char-step2');
+    }
+
 }
