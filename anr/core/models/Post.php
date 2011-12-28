@@ -15,10 +15,11 @@ class Post extends ARBase {
     public $visitCount;
     public $authorID;
     public $threadID;
-    
+    public $author;
+
     public function __construct() {
         parent::__construct();
-        
+
         $this->table = 'Post';
     }
 
@@ -35,6 +36,7 @@ class Post extends ARBase {
             if (($resource = mysql_query($query))) {
                 $result = mysql_fetch_object($resource, 'Post');
                 $result->newRecord = false;
+                $result->author = User::model()->findByPk($result->authorID)->name;
                 mysql_free_result($resource);
             }
             $this->disconnect();
@@ -57,11 +59,12 @@ class Post extends ARBase {
             $where = 'WHERE ' . $criteria;
         }
         $query = sprintf("SELECT %s FROM %s %s", $fields, $this->table, $where);
-       
+
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
                 while (($result = mysql_fetch_object($resource, 'Post')) !== false) {
-                    $result->newRecord = false;                
+                    $result->newRecord = false;
+                    $result->author = User::model()->findByPk($result->authorID)->name;                    
                     $found[] = $result;
                 }
                 mysql_free_result($resource);
@@ -79,7 +82,7 @@ class Post extends ARBase {
 
     public function refresh() {
         $temp = $this->find('postID = ' . (int) $this->postID);
-        
+
         $this->postID = $temp->postID;
         $this->post = $temp->post;
         $this->title = $temp->title;
@@ -88,6 +91,7 @@ class Post extends ARBase {
         $this->visitCount = $temp->visitCount;
         $this->authorID = $temp->authorID;
         $this->threadID = $temp->threadID;
+        $this->author = User::model()->findByPk($this->authorID)->name;
     }
 
     public function save() {

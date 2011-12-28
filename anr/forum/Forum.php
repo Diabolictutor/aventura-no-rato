@@ -61,16 +61,28 @@ class Forum extends Controller {
         //passar a lista para a vista
         $thread = Thread::model()->findByPk($_GET["id"]);
         
-        $this->render('forum/thread');
+        $this->render('forum/thread', array(
+            'threadID' => $thread->threadID, 
+            'title' => $thread->title,
+            'posts' => $thread->loadPosts()
+                ));
     }
     
     public function reply(){
         
         $post = new Post();
         
+        $post->threadID = $_POST['threadID'];
         $post->post = $POST['reply'];
+        $post->authorID = $_SESSION['id'];
+        $post->threadID = $_POST['threadID'];
+        $post->title = $POST['reply'];
+        $post->created = date('Y-m-d H:i:s');
+        $post->modified = date('Y-m-d H:i:s');
         
         $post->save();
+        
+        $this->redirect(array('c' => 'forum', 'a' => 'thread'), array('id' => $post->threadID));
     }
 }
 

@@ -2,8 +2,8 @@
 
 /**
  * property $threadID;
- * property  $title;
- * property  $position;
+ * property $title;
+ * property $position;
  */
 class Thread extends ARBase {
 
@@ -13,6 +13,8 @@ class Thread extends ARBase {
     public $postCount;
     public $visitCount;
     public $authorID;
+    public $boardID;
+    public $author;
     
     public function __construct() {
         parent::__construct();
@@ -33,6 +35,7 @@ class Thread extends ARBase {
             if (($resource = mysql_query($query))) {
                 $result = mysql_fetch_object($resource, 'Thread');
                 $result->newRecord = false;
+                $result->author = User::model()->findByPk($result->authorID)->name;
                 mysql_free_result($resource);
             }
             $this->disconnect();
@@ -59,7 +62,8 @@ class Thread extends ARBase {
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
                 while (($result = mysql_fetch_object($resource, 'Thread')) !== false) {
-                    $result->newRecord = false;                
+                    $result->newRecord = false;
+                    $result->author = User::model()->findByPk($result->authorID)->name;
                     $found[] = $result;
                 }
                 mysql_free_result($resource);
@@ -84,6 +88,8 @@ class Thread extends ARBase {
         $this->postCount = $temp->postCount;
         $this->visitCount = $temp->visitCount;
         $this->authorID = $temp->authorID;
+        $this->boardID = $temp->boardID;
+        $this->author = User::model()->findByPk($this->authorID)->name;
     }
 
     public function save() {
@@ -95,9 +101,10 @@ class Thread extends ARBase {
                     `date`, 
                     `postCount`,
                     `visitCount`, 
-                    `authorID`) 
+                    `authorID`, 
+                    `boardID`) 
                 VALUES (%d, '%s', %d)"
-                    , $this->threadID, $this->title, $this->date, $this->postCount, $this->visitCount, $this->authorID);
+                    , $this->threadID, $this->title, $this->date, $this->postCount, $this->visitCount, $this->authorID, $this->boardID);
 
             if ($this->connect()) {
 
@@ -115,9 +122,10 @@ class Thread extends ARBase {
                     `date` = '%s', 
                     `postCount` = %d,
                     `visitCount` = %d, 
-                    `authorID` = %d
+                    `authorID` = %d, 
+                    `boardID` = %d
                 WHERE `threadID` = %d"
-                    , $this->threadID, $this->title, $this->date, $this->postCount, $this->visitCount, $this->authorID
+                    , $this->threadID, $this->title, $this->date, $this->postCount, $this->visitCount, $this->authorID, $this->boardID
             );
 
             if ($this->connect()) {
@@ -132,6 +140,10 @@ class Thread extends ARBase {
 
     public static function model() {
         return new Thread();
+    }
+    
+    public function loadPosts() {
+        return Post::model()->findAll('threadID = ' . $this->threadID);
     }
 
 }

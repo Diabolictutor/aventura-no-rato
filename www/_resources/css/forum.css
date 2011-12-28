@@ -1,0 +1,47 @@
+#thtitle {
+    background-color:green;
+    width:100%;
+}
+
+#postframe {
+    
+}
+
+#userol {
+    float:left;
+    width:25%;
+    height:175px;
+    background-color:lightgreen;
+    text-align:center;
+}
+
+#userimg {
+    border:2px solid black;
+    width:50%;
+    height:80%;
+    margin:12px 25% 0 25%;
+}
+#useril {
+    
+}
+
+#post {
+    float:right;
+    width:75%;
+    height:175px;
+    background-color:lightgoldenrodyellow;
+}
+
+#reply {
+    text-align:center;
+}
+
+#reply textarea {
+    width:750px;
+    height:250px;
+    border:1px solid black;
+}
+
+#reply input{
+    border:1px solid black;
+}
