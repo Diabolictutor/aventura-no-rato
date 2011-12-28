@@ -40,13 +40,14 @@ class Administration extends Controller {
     public function cms() {
         $csections = ContentSection::model()->findAll();
         $this->render('administration/cms', array(
-            'csections' => $sections,
-            'selection' => 'sections'
+            'csections' => $csections,
+            'selection' => 'cms'
         ));
     }
 
     public function editBoard() {
         $board = new Board();
+        
         if (isset($_GET['id']) && intval($_GET['id']) != 0) {
             $board = Board::model()->findByPk($_GET['id']);
         }
@@ -56,15 +57,54 @@ class Administration extends Controller {
             $board->position = $_POST['position'];
 
             if ($board->save()) {
-                //TODO: redirect code...
+                $this->redirect(array('c' => 'administration', 'a' => 'editboard'), array('id' => $board->boardID));
             }
         }
-
         $this->render('administration/edit-board', array('board' => $board));
     }
 
     public function editUser() {
+        $user = new User();
         
+        if (isset($_GET['id']) && intval($_GET['id']) != 0) {
+            $user = User::model()->findByPk($_GET['id']);
+        }
+
+        if (isset($_POST['User'])) {
+            $user->name = $_POST['name'];
+            $user->password = $_POST['password'];
+            $user->group = $_POST['group'];
+            $user->active = $_POST['active'];
+
+            if ($user->save()) {
+                $this->redirect(array('c' => 'administration', 'a' => 'edituser'), array('id' => $board->userID));
+            }
+        }
+        $this->render('administration/edit-user', array('user' => $user));
     }
 
+    public function editChar() {
+        $Character = new Character();
+        
+        if (isset($_GET['id']) && intval($_GET['id']) != 0) {
+            $user = User::model()->findByPk($_GET['id']);
+        }
+        $this->render('administration/edit-char', array('character' => $character));
+    }
+    
+    public function users() {
+        $users = User::model()->findAll();
+        $this->render('administration/users', array(
+            'lUsers' => $users,
+            'selection' => 'users'
+        ));
+    }
+    
+    public function chars() {
+        $chars = Character::model()->findAll();
+        $this->render('administration/cms', array(
+            'lChars' => $chars,
+            'selection' => 'chars'
+        ));
+    }
 }

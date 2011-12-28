@@ -149,9 +149,9 @@ class User extends ARBase {
 
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
-                while (($result = mysql_fetch_object($resource, 'User')) !== null) {
-                    $found[] = $result;
-                }
+                ///while (($result = mysql_fetch_object($resource, 'User')) !== null) {
+                //    $found[] = $result;
+                //}
                 mysql_free_result($resource);
             }
             $this->disconnect();

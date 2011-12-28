@@ -53,7 +53,7 @@ class ContentSection extends ARBase {
 
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
-                if (($result = mysql_fetch_object($resource, 'User')) !== false) {
+                if (($result = mysql_fetch_object($resource, 'ContentSection')) !== false) {
                     $found = $result;
                 }
                 mysql_free_result($resource);
@@ -74,7 +74,7 @@ class ContentSection extends ARBase {
 
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
-                while (($result = mysql_fetch_object($resource, 'User')) !== false) {
+                while (($result = mysql_fetch_object($resource, 'ContentSection')) !== false) {
                     $found[] = $result;
                 }
                 mysql_free_result($resource);
