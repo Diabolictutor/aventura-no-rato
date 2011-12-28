@@ -30,7 +30,22 @@ class Game extends Controller {
     }
 
     public function charCreation() {
-        $this->render('game/create-char-step2');
+
+        //max de pontos base
+        //valor aleatorio de pontos para gastar
+
+        $rweight = rand(1, 60);
+        $rstrenght = rand(1, 60);
+        $rdefense = rand(1, 60);
+        $rintellect = rand(1, 60);
+        $rluck = rand(1, 60);
+        $rhealth = rand(1, 60);
+
+        $this->render('game/create-char-step2', array(
+            'weight' => $rweight, 'strenght' => $rstrenght, 
+            'defense' => $rdefense, 'intellect' =>$rintellect,
+            'luck' =>$rluck, 'health' =>$rhealth            
+        ));
     }
 
 }

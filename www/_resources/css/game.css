@@ -2,15 +2,19 @@
     
 }
 
-#input {
+#create-char form input {
+float: right;
+margin-right: 2em;
+padding: 0;
 
 }
 
+label{
+}
 .widget-left {
     float: left;
-    width: 50%;
+    width: 15%;
 }
-
 .ui-slider {
     width: 40%;
     float: left;
