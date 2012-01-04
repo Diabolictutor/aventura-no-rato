@@ -2,18 +2,19 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        
+
         <link href="_resources/css/base.css" rel="stylesheet" type="text/css" />
-        <link href="_resources/css/site.css" rel="stylesheet" type="text/css" />
 
         <link href="_resources/css/black-tie/jquery-ui-full.css" rel="stylesheet" type="text/css"/>
 
         <script src="_resources/js/jquery.min.js" type="text/javascript"></script>
         <script src="_resources/js/jquery-ui-full.min.js" type="text/javascript"></script>
+        
+        <link href="_resources/css/site.css" rel="stylesheet" type="text/css" />
 
-        <title></title>
-
-        <?php echo $this->getInitScriptSection(); ?>
+        <?php echo $this->getScriptSection(); ?>
+        
+        <title><?php echo $this->title; ?></title>
     </head>
     <body>
         <div id="top">
@@ -42,5 +43,6 @@
         <div id="footer">
             &copy; <?php echo date('Y'); ?> Aventura no Rato!
         </div>
+        <?php echo $this->getInitScriptSection(); ?>
     </body>
 </html>

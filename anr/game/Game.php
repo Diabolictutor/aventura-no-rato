@@ -30,22 +30,54 @@ class Game extends Controller {
     }
 
     public function charCreation() {
+        if (isset($_POST['step'])) {
 
+            //if(!isset($_SESSION['charcreation']))  {  
+            //}
+
+            switch (intval($_POST['step'])) {
+                case 1:
+                    $this->render('game/create-char-step1');
+                    break;
+                case 2:
+                    $max = 20;
+
+                    $rands = (object) array(
+                                'weight' => rand(1, $max),
+                                'strenght' => rand(1, $max),
+                                'defense' => rand(1, $max),
+                                'intellect' => rand(1, $max),
+                                'luck' => rand(1, $max),
+                                'health' => rand(1, $max)
+                    );
+
+                    $this->render('game/create-char-step2', array(
+                        'stats' => $rands
+                    ));
+                    break;
+                case 3:
+                    break;
+            }
+        } else {
+            $this->render('game/create-char-step1');
+        }
+
+        //3 passos: passo 1 dados base, passo 2 caracterisitas, passo 3 confirmação
+        //decidir em que passo estou
+        //
+        //passo 0
+        //carregar imagens para portraits
+        //guardar dados que existam
+        //apresentar vista passo 1
+        //passo 2
+        //guardar dados que existam
+        //gerar pontos aleatórios para os atributos, se não existerem gravados
+        //apresentar vista passo 2
+        //passo 3
+        //guardar dados que existam
+        //apresentar vista passo 3
         //max de pontos base
         //valor aleatorio de pontos para gastar
-
-        $rweight = rand(1, 60);
-        $rstrenght = rand(1, 60);
-        $rdefense = rand(1, 60);
-        $rintellect = rand(1, 60);
-        $rluck = rand(1, 60);
-        $rhealth = rand(1, 60);
-
-        $this->render('game/create-char-step2', array(
-            'weight' => $rweight, 'strenght' => $rstrenght, 
-            'defense' => $rdefense, 'intellect' =>$rintellect,
-            'luck' =>$rluck, 'health' =>$rhealth            
-        ));
     }
 
 }

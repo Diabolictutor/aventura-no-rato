@@ -36,7 +36,7 @@ class View {
      * @var int Places JS code in the end of the file, before the closing BODY.
      */
     public static $POS_END = 3;
-//
+    //
     private $layout;
     private $scripts;
     private $styles;
@@ -47,6 +47,8 @@ class View {
     private $controller;
     private $jsEndFiles;
     private $scriptFiles;
+    //
+    public $title;
 
     public function __construct($controller, $layout = 'site') {
         $this->controller = $controller;
@@ -159,16 +161,17 @@ class View {
     public function getScriptSection() {
         ob_start();
 
-        if (!empty($this->jsEndFiles)) {
-            foreach ($this->jsEndFiles as $js) {
+        if (!empty($this->scriptFiles)) {
+            foreach ($this->scriptFiles as $js) {
                 echo '<script type="text/javascript" src="', $js, '"></script>', "\n";
             }
         }
-        if (!empty($this->jsEndFiles)) {
-            foreach ($this->jsEndFiles as $js) {
+        if (!empty($this->scripts)) {
+            foreach ($this->scripts as $js) {
                 echo '<script type="text/javascript">', $js, '</script>', "\n";
             }
         }
+
         return ob_get_clean();
     }
 
@@ -180,13 +183,14 @@ class View {
         ob_start();
 
         if (!empty($this->jsInit)) {
-            echo '<script type="text/javascript">', "\n";
-            echo '$(function() {', "\n";
+            echo '<script type="text/javascript">', "\n/*<![CDATA[*/\n",
+            'jQuery(function($) {', "\n";
+
             foreach ($this->jsInit as $js) {
                 echo $js, "\n";
             }
-            echo '});', "\n";
-            echo '</script>', "\n";
+
+            echo '});', "\n/*]]>*/\n", '</script>', "\n";
         }
         return ob_get_clean();
     }
@@ -198,19 +202,19 @@ class View {
     public function getEndScriptSection() {
         ob_start();
 
-        if (!empty($this->scriptFiles)) {
-            foreach ($this->scriptFiles as $js) {
+        if (!empty($this->jsEndFiles)) {
+            foreach ($this->jsEndFiles as $js) {
                 echo '<script type="text/javascript" src="', $js, '"></script>', "\n";
             }
         }
-        if (!empty($this->scripts)) {
-            foreach ($this->scripts as $js) {
+
+        if (!empty($this->jsEnd)) {
+            foreach ($this->jsEnd as $js) {
                 echo '<script type="text/javascript">', $js, '</script>', "\n";
             }
-
-
-            return ob_get_clean();
         }
+
+        return ob_get_clean();
     }
 
     /**
