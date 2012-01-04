@@ -36,21 +36,23 @@ class Forum extends Controller {
      * Topic search action (use in the form action)
      */
     public function search() {
+        
+        
+        
         $this->render('forum/search');
     }
-
-    /**
-     * Show search results
-     */
-    public function searchResults() {
-        $this->render('forum/search-results');
-    }
-
     /**
      * Topics for a given board
      */
     public function board() {
-        $this->render('forum/board');
+        
+        $board = Board::model()->findByPk($_GET["id"]);
+        
+        $this->render('forum/board', array(
+            'boardID' => $board->boardID, 
+            'title' => $board->title,
+            'threads' => $board->loadThreads()
+                ));
     }
 
     /**

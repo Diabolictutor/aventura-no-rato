@@ -13,7 +13,7 @@ class Board extends ARBase {
 
     public function __construct() {
         parent::__construct();
-        
+
         $this->table = 'Board';
     }
 
@@ -52,11 +52,11 @@ class Board extends ARBase {
             $where = 'WHERE ' . $criteria;
         }
         $query = sprintf("SELECT %s FROM %s %s", $fields, $this->table, $where);
-       
+
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
                 while (($result = mysql_fetch_object($resource, 'Board')) !== false) {
-                    $result->newRecord = false;                
+                    $result->newRecord = false;
                     $found[] = $result;
                 }
                 mysql_free_result($resource);
@@ -105,7 +105,7 @@ class Board extends ARBase {
                     `title` = '%s',
                     `position` = %d
                 WHERE `boardID` = %d"
-                    , $this->boardID, $this->title, $this->position,$this->boardID
+                    , $this->boardID, $this->title, $this->position, $this->boardID
             );
 
             if ($this->connect()) {
@@ -120,6 +120,10 @@ class Board extends ARBase {
 
     public static function model() {
         return new Board();
+    }
+
+    public function loadThreads() {
+        return Thread::model()->findAll('boardID = ' . $this->boardID);
     }
 
 }
