@@ -36,6 +36,49 @@ class Forum extends Controller {
      * Topic search action (use in the form action)
      */
     public function search() {
+        $porder = $torder = $pcriteria = null;
+        
+        if ($_POST['searchtype'] == 'adv') {
+            if (isset($_POST['search'])&&isset($_POST['usearch'])) {
+                $pcriteria = "title= '".$_POST['search']. "' AND author='" .$_POST['usearch']."'";
+            }           
+            
+            if (isset($_POST['search'])) {
+                $pcriteria = "title= '".$_POST['search']."'";
+            }            
+            if (isset($_POST['usearch'])) {
+                $pcriteria = "author= '".$_POST['usearch']."'";
+            }
+
+            switch ($_POST['searchorder']) {
+                case 'dataasc':
+                    $porder = 'ORDER BY created ASC';
+                    $torder = 'ORDER BY `date` ASC';
+                    break;
+                case 'datades':
+                    $porder = 'ORDER BY created DESC';
+                    $torder = 'ORDER BY `date` DESC';
+                    break;
+                case 'abc':
+                    $porder = $torder = 'ORDER BY title';
+                    break;
+            }
+            
+            if(posts) {
+                
+                
+                
+                $found = Post::model()->findAll($pcriteria, $porder);
+            }
+        } else if ($_POST['searchtype'] == 'regular') {
+            
+        }
+
+        $this->render('forum/search-results');
+    }
+
+    public function advsearch() {
+        //fazer pesquisa e apresentar resultados
         $this->render('forum/search');
     }
 
