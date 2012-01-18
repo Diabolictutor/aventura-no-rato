@@ -28,6 +28,7 @@
                 </p>
                 <p>
                     <input type="submit" value="Submit" />
+                    <input type="hidden" name="User" />
                 </p>
             </fieldset>
         </form>

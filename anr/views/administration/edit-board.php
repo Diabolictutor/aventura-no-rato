@@ -11,4 +11,6 @@
         </p>
     </fieldset>
     <input type="submit" value="<?php echo ($this->board->newRecord ? 'Create' : 'Save'); ?>" name="Board" />
+    <input type="hidden" name="Board" />
+    <a href="<?php echo $this->createURl(array('c' => 'administration', 'a' => 'editboard')); ?>"
 </form>

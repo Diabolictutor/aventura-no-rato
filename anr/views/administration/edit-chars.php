@@ -1,7 +1,7 @@
 <?php echo $this->includeViewFile('administration/_admin-menu'); ?>
 <div id="edit-character">
-    <!-- //TODO: proper action for this form -->
-    <form action="<?php echo $this->createURL(array('c' => 'administration', 'a' =>'')); ?>" method="POST">
+    <form action="<?php echo $this->createUrl(array('c' => 'administration', 'a' =>'editChar')); ?>" 
+          method="POST">
         <fieldset>
             <legend>Edit Character</legend>
             <p>
@@ -14,6 +14,7 @@
             </p>
             <p>
                 <input type="submit" value="Submit" />
+                <input type="hidden" name="Character" />
             </p>
         </fieldset>
     </form>

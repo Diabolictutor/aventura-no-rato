@@ -24,9 +24,9 @@ class Administration extends Controller {
     public function __construct() {
         parent::__construct('administration');
 
-        if (!System::app()->isAdmin()) {
-            $this->redirect(array());
-        }
+        //if (!System::app()->isAdmin()) {
+        //    $this->redirect(array());
+        //}
     }
 
     public function index() {
@@ -66,7 +66,18 @@ class Administration extends Controller {
     }
 
     public function editContent() {
-        //TODO: not implemented yet
+        $content = new ContentSection();
+        
+        if(isset($_GET['id']) && intval($_GET['id'])){
+            $content = ContentSection::model()->findByPk($_GET['id']);  
+        }
+        
+        if(isset($_POST['ContentSection'])) {
+            $content->description = $_POST['description'];
+            $content->content = $_POST['content'];
+        }
+        
+        $this->render('administration/edit-content', array('content' => $content));
     }
 
     public function users() {

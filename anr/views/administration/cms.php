@@ -4,7 +4,7 @@
     <?php if (count($this->csections)) { ?>
         <ul>
             <?php foreach ($this->csections as $item) { ?>
-                <li><a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'layoutedit')); ?>"><?php echo $item; ?></a></li>
+                <li><a href="<?php echo $this->createUrl(array('c' => 'administration', 'a' => 'layoutedit')); ?>"><?php echo $item->description; ?></a></li>
             <?php } ?>
         </ul>
     <?php } else { ?>
