@@ -80,4 +80,24 @@ class Game extends Controller {
         //valor aleatorio de pontos para gastar
     }
 
+    function t() {
+
+        $found = array();
+        $path = WEBROOT . '/_resources/images/game/portraits/female';
+
+        $dh = opendir($path);
+        if ($dh !== false) {
+
+            while (($file = readdir($dh)) !== false) {
+                //apenas guardar pngs
+                $found[] = $file;
+            }
+
+            closedir($dh);
+        }
+
+
+        return $found;
+    }
+
 }
