@@ -1,10 +1,44 @@
 <?php
 
+/* ContentSection.php
+ * 
+ * This file is part of Aventura no Rato! A browser based, adventure type, game.
+ * Copyright (C) 2011  Diogo Samuel, Jorge Gonçalves, Pedro Pires e Sérgio Lopes
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ */
+
 class ContentSection extends ARBase {
 
+    /**
+     * @var int
+     */
     public $contentID;
+    
+    /**
+     * @var string
+     */
     public $date;
+    
+    /**
+     * @var string 
+     */
     public $description;
+    
+    /**
+     * @var string 
+     */
     public $content;
 
     public function __construct() {
@@ -13,43 +47,55 @@ class ContentSection extends ARBase {
         $this->table = 'ContentSection';
     }
 
+    /**
+     *
+     * @return boolean 
+     */
     public function save() {
         if ($this->newRecord) {
             $insert = sprintf("
                 INSERT INTO `ContentSection` (
-                    `ContentID`, 
                     `date`,
                     `description`,
-                    `content`)
-                VALUES ('%d', '%d', '%s', '%s')"
-                    , $this->contentID, $this->date, $this->description, $this->content);
+                    `content`
+                    )
+                VALUES ('%s', '%s', '%s')"
+                    , $this->date, $this->description, $this->content);
 
             if ($this->connect()) {
                 if (mysql_query($insert) && mysql_affected_rows() == 1) {
-                    $this->userID = mysql_insert_id();
+                    $this->contentID = mysql_insert_id();
+
                     return true;
-                }$this->disconnect();
+                }
+                $this->disconnect();
             }
         } else {
             $update = sprintf("
                 UPDATE `ContentSection` SET 
-                    `ContentID` = '%s', 
                     `date` = '%d',
                     `description` = '%s',
                     `content` = '%s',
-                WHERE `ContentSectionID` = %s"
-                    , $this->contentID, $this->date, $this->description, $this->content);
+                WHERE `contentID` = %s"
+                    , $this->date, $this->description, $this->content, $this->contentID);
         }
     }
 
+    /**
+     *
+     * @param string $criteria
+     * @param string $fields
+     * 
+     * @return ContentSection
+     */
     public function find($criteria = '', $fields = '*') {
-        $found;
+        $found = null;
 
         $where = '';
         if ($criteria != '') {
             $where = ' WHERE ' . $criteria;
         }
-        $query = sprintf("SELECT %s FROM %s %s", $field, $this->table, $where);
+        $query = sprintf("SELECT %s FROM %s %s", $fields, $this->table, $where);
 
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
@@ -63,6 +109,13 @@ class ContentSection extends ARBase {
         return $found;
     }
 
+    /**
+     *
+     * @param string $criteria
+     * @param string $fields
+     * 
+     * @return ContentSection[]
+     */
     public function findAll($criteria = '', $fields = '*') {
         $found = array();
 
@@ -85,21 +138,32 @@ class ContentSection extends ARBase {
         return $found;
     }
 
+    /**
+     *
+     * @param int $key
+     * @param string $fields
+     * 
+     * @return ContentSection 
+     */
     public function findByPk($key, $fields = '*') {
-        return $this->find('contentID = ' . (int) $key);
+        return $this->find('contentID = ' . (int) $key, $fields);
     }
 
+    /**
+     * 
+     */
     public function refresh() {
         $temp = $this->findByPk($this->contentID);
+
         $this->date = $temp->date;
-
-        $temp = $this->findByPk($this->contentID);
         $this->description = $temp->description;
-
-        $temp = $this->findByPk($this->contentID);
         $this->content = $temp->content;
     }
 
+    /**
+     *
+     * @return ContentSection 
+     */
     public static function model() {
         return new ContentSection();
     }

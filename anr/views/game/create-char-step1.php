@@ -14,7 +14,7 @@
             </p>
         </fieldset>
         <p>
-            <button type="submit" name="step"><img src="#" /></button>
+            <button type="submit" name="step"><img src="_resources/images/game/interface/next.38x40.png" /></button>
         </p>
         <input type="hidden" value="2" name="step" />
     </form>

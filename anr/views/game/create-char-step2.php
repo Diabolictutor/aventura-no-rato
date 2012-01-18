@@ -50,8 +50,8 @@ $this->registerScript('initSliders()', View::$POS_INIT);
             <div class="clear"></div>
         </fieldset>
         <p>
-            <button type="submit"><img src="#" /></button>
-            <button type="submit"><img src="#" /></button>
+            <button type="submit"><img src="_resources/images/game/interface/previous.38x40.png" /></button>
+            <button type="submit"><img src="_resources/images/game/interface/next.38x40.png" /></button>
         </p>
         <input type="hidden" value="3" name="step" id="step" />
     </form>

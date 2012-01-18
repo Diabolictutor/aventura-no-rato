@@ -1,4 +1,3 @@
-<!-- //TODO: every css code to a proper css file -->
 <div>
     <?php foreach ($this->posts as $post) { ?>
         <div>
@@ -17,10 +16,13 @@
     <?php } ?>
 </div>
 <div id="reply">
-    <form action="#" method="POST">
-        <input type="text" id="replytitle" value="RE: <?php $this->title ?>"/> 
-        <textarea></textarea>
-        <input type="submit" value="SUBMIT" />
+    <form action="<?php echo $this->createUrl(array('c' => 'forum', 'a' => 'reply')); ?>" method="POST">
+        <input type="text" id="title" name="title" value="RE: <?php $this->title ?>"/>
+        <br />
+        <textarea name="message" id="message"></textarea>
+        <br />
+        <input type="submit" value="Send" />
+
         <input type="hidden" name="threadID" value="<?php echo $this->threadID; ?>" />
     </form>
 </div>

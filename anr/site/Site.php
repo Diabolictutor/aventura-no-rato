@@ -102,8 +102,9 @@ class Site extends Controller {
         $this->render('site/login', array('error' => $error));
     }
 
-    public function logout(){
+    public function logout() {
         System::app()->clearUser($_SESSION['user']);
         $this->redirect(array('c' => 'site'));
     }
+
 }

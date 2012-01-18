@@ -1,21 +1,77 @@
 <?php
 
-/**
- * property $postID;
- * property  $title;
- * property  $position;
+/* Post.php
+ * 
+ * This file is part of Aventura no Rato! A browser based, adventure type, game.
+ * Copyright (C) 2011  Diogo Samuel, Jorge Gonçalves, Pedro Pires e Sérgio Lopes
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
  */
+
 class Post extends ARBase {
 
+    /**
+     * @var int
+     */
     public $postID;
-    public $post;
+
+    /**
+     * @var string
+     */
     public $title;
-    public $date;
-    public $postCount;
-    public $visitCount;
+
+    /**
+     * @var string
+     */
+    public $created;
+
+    /**
+     * @var string
+     */
+    public $modified;
+
+    /**
+     * @var int 
+     */
     public $authorID;
+
+    /**
+     * @var int
+     */
+    public $modifiedBy;
+
+    /**
+     * @var string 
+     */
+    public $post;
+
+    /**
+     * @var int 
+     */
     public $threadID;
+
+    //Properties that are base on model relations
+
+    /**
+     * @var User 
+     */
     public $author;
+
+    /**
+     * @var User 
+     */
+    public $modifier;
 
     public function __construct() {
         parent::__construct();
@@ -23,6 +79,13 @@ class Post extends ARBase {
         $this->table = 'Post';
     }
 
+    /**
+     *
+     * @param string $criteria
+     * @param string $fields
+     * 
+     * @return Post
+     */
     public function find($criteria = '', $fields = '*') {
         $result = null;
 
@@ -36,7 +99,12 @@ class Post extends ARBase {
             if (($resource = mysql_query($query))) {
                 $result = mysql_fetch_object($resource, 'Post');
                 $result->newRecord = false;
-                $result->author = User::model()->findByPk($result->authorID)->name;
+
+                $result->author = User::model()->findByPk($result->authorID);
+                if ($result->modifiedBy) {
+                    $result->modifier = User::model()->findByPk($result->modifiedBy);
+                }
+
                 mysql_free_result($resource);
             }
             $this->disconnect();
@@ -47,8 +115,9 @@ class Post extends ARBase {
 
     /**
      *
-     * @param type $criteria
-     * @param type $fields
+     * @param string $criteria
+     * @param string $fields
+     * 
      * @return Post[]
      */
     public function findAll($criteria = '', $fields = '*') {
@@ -64,7 +133,11 @@ class Post extends ARBase {
             if (($resource = mysql_query($query))) {
                 while (($result = mysql_fetch_object($resource, 'Post')) !== false) {
                     $result->newRecord = false;
-                    $result->author = User::model()->findByPk($result->authorID)->name;                    
+
+                    $result->author = User::model()->findByPk($result->authorID);
+                    if ($result->modifiedBy) {
+                        $result->modifier = User::model()->findByPk($result->modifiedBy);
+                    }
                     $found[] = $result;
                 }
                 mysql_free_result($resource);
@@ -76,38 +149,54 @@ class Post extends ARBase {
         return $found;
     }
 
+    /**
+     *
+     * @param int $key
+     * @param striing $fields
+     * 
+     * @return Post
+     */
     public function findByPk($key, $fields = '*') {
-        return $this->find('postID = ' . (int) $key);
+        return $this->find('postID = ' . (int) $key, $fields);
     }
 
+    /**
+     * 
+     */
     public function refresh() {
         $temp = $this->find('postID = ' . (int) $this->postID);
 
         $this->postID = $temp->postID;
-        $this->post = $temp->post;
         $this->title = $temp->title;
-        $this->date = $temp->date;
-        $this->postCount = $temp->postCount;
-        $this->visitCount = $temp->visitCount;
+        $this->created = $temp->created;
+        $this->modified = $temp->modified;
         $this->authorID = $temp->authorID;
+        $this->modifiedBy = $temp->modifiedBy;
+        $this->post = $temp->post;
         $this->threadID = $temp->threadID;
-        $this->author = User::model()->findByPk($this->authorID)->name;
+        //
+        $this->author = User::model()->findByPk($this->authorID);
+        if ($this->modifiedBy) {
+            $this->modifier = User::model()->findByPk($this->modifiedBy);
+        }
     }
 
+    /**
+     *
+     * @return boolean 
+     */
     public function save() {
         if ($this->newRecord) {
             $insert = sprintf("
                 INSERT INTO `Post` (
-                    `postID`,
-                    `post`,
                     `title`,
-                    `date`, 
-                    `postCount`,
-                    `visitCount`, 
-                    `authorID`, 
-                    `threadID`) 
-                VALUES (%d, '%s', '%s', 's', %d, %d, %d, %d)"
-                    , $this->postID, $this->post, $this->title, $this->date, $this->postCount, $this->visitCount, $this->authorID, $this->threadID);
+                    `created`,
+                    `authorID`,
+                    `post`,
+                    `threadID`
+                    ) 
+                VALUES ('%s', '%s', %d, '%s', %d)"
+                    , $this->title, $this->created, $this->authorID, $this->threadID);
 
             if ($this->connect()) {
 
@@ -120,16 +209,16 @@ class Post extends ARBase {
         } else {
             $update = sprintf("
                 UPDATE `Post` SET 
-                    `postID` = %d,
-                    `post` = '%s',
                     `title` = '%s',
-                    `date` = '%s', 
-                    `postCount` = %d,
-                    `visitCount` = %d, 
-                    `authorID` = '%s', 
+                    `created` = '%s',
+                    `modified` = '%s',
+                    `authorID` = %d,
+                    `modifiedBy` = %d,
+                    `post` = '%s',
                     `threadID` = %d
                 WHERE `postID` = %d"
-                    , $this->postID, $this->post, $this->title, $this->date, $this->postCount, $this->visitCount, $this->authorID, $this->threadID
+                    , $this->title, $this->created, $this->modified, $this->authorID
+                    , $this->modifiedBy, $this->post, $this->threadID, $this->postID
             );
 
             if ($this->connect()) {
@@ -142,6 +231,10 @@ class Post extends ARBase {
         return false;
     }
 
+    /**
+     *
+     * @return Post 
+     */
     public static function model() {
         return new Post();
     }

@@ -110,7 +110,7 @@ abstract class ARBase {
     public function delete($criteria) {
         $success = false;
 
-        $query = sprintf("DELETE FROM %s WHERE %s LIMIT 1", $this->table, $where);
+        $query = sprintf("DELETE FROM %s WHERE %s LIMIT 1", $this->table, $criteria);
         if ($this->connect()) {
             $success = (mysql_query($query) && mysql_affected_rows());
             $this->disconnect();

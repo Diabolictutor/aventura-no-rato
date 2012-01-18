@@ -36,55 +36,55 @@ class Forum extends Controller {
      * Topic search action (use in the form action)
      */
     public function search() {
-        
-        
-        
         $this->render('forum/search');
     }
+
     /**
      * Topics for a given board
      */
     public function board() {
-        
         $board = Board::model()->findByPk($_GET["id"]);
-        
+
         $this->render('forum/board', array(
-            'boardID' => $board->boardID, 
+            'boardID' => $board->boardID,
             'title' => $board->title,
             'threads' => $board->loadThreads()
-                ));
+        ));
     }
 
     /**
      * Thread data
      */
     public function thread() {
-        //carregar todos os posts desta thread (thread ID)
-        //passar a lista para a vista
         $thread = Thread::model()->findByPk($_GET["id"]);
-        
+        $posts = $thread->loadPosts();
+
         $this->render('forum/thread', array(
-            'threadID' => $thread->threadID, 
+            'threadID' => $thread->threadID,
             'title' => $thread->title,
-            'posts' => $thread->loadPosts()
-                ));
+            'posts' => $posts
+        ));
     }
-    
-    public function reply(){
-        
+
+    public function reply() {
         $post = new Post();
-        
-        $post->threadID = $_POST['threadID'];
-        $post->post = $POST['reply'];
-        $post->authorID = $_SESSION['id'];
-        $post->threadID = $_POST['threadID'];
-        $post->title = $POST['reply'];
-        $post->created = date('Y-m-d H:i:s');
-        $post->modified = date('Y-m-d H:i:s');
-        
-        $post->save();
-        
+
+        $post->title = $_POST['title'];
+        $post->post = $_POST['message'];
+
+        $date = date('Y-m-d H:i:s');
+        $post->created = $date;
+        $post->modified = $date;
+
+        $post->threadID = intval($_POST['threadID']);
+        $post->authorID = System::app()->getUser()->userID;
+
+        if (!$post->save()) {
+            //TODO: show error message to the user
+        }
+
         $this->redirect(array('c' => 'forum', 'a' => 'thread'), array('id' => $post->threadID));
     }
+
 }
 

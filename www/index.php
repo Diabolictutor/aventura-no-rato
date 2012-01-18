@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 ini_set('magic_quotes_runtime', 0);

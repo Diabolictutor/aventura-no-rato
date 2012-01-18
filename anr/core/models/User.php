@@ -19,31 +19,61 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
  */
 
-/**
- * @property $userID
- * @property $email;
- * @property $password;
- * @property $name;
- * @property $admin;
- * @property $signature;
- * @property $website;
- * @property $lastLogin;
- * @property $active;
- * @property $avatar;
- * @property $postPerPage;
- */
 class User extends ARBase {
 
+    /**
+     * @var int 
+     */
     public $userID;
+    
+    /**
+     * @var string 
+     */
     public $email;
+    
+    /**
+     * @var string
+     */
     public $password;
+    
+    /**
+     * @var string
+     */
     public $name;
+    
+    /**
+     * @var int
+     */
     public $admin;
+    
+    /**
+     * @var string 
+     */
     public $signature;
+    
+    /**
+     * @var string
+     */
     public $website;
+    
+    /**
+     * @var string
+     */
     public $lastLogin;
+    
+    /**
+     * @var int
+     */
     public $active;
+    
+    /**
+     * @var string
+     */
     public $avatar;
+    
+    /**
+     * @var int
+     */
     public $postPerPage;
 
     public function __construct() {
@@ -134,8 +164,9 @@ class User extends ARBase {
 
     /**
      *
-     * @param type $criteria
-     * @param type $fields
+     * @param string $criteria
+     * @param string $fields
+     * 
      * @return User[]
      */
     public function findAll($criteria = '', $fields = '*') {
@@ -162,13 +193,14 @@ class User extends ARBase {
 
     /**
      *
-     * @param type $key
-     * @param type $fields
+     * @param int $key
+     * @param string $fields
+     * 
      * @return User
      */
     public function findByPk($key, $fields = '*') {
 
-        return $this->find('userId = ' . (int) $key);
+        return $this->find('userId = ' . (int) $key, $fields);
     }
 
     public function refresh() {
@@ -195,10 +227,12 @@ class User extends ARBase {
 
     /**
      * @global string $hash
+     * 
      * @param string $password
+     * 
      * @return string 
      */
-    public function hash($password) {
+    public static function hash($password) {
         global $hash;
 
         return sha1($password . $hash);

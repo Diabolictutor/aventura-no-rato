@@ -114,5 +114,6 @@ input, textarea, select {
     border: solid 1px #cccccc;
 }
 
-p {
+button {
+    background-color: transparent;
 }

@@ -24,30 +24,23 @@ class Administration extends Controller {
     public function __construct() {
         parent::__construct('administration');
 
-        //if (!System::app()->isAdmin()){
-        //    $this->redirect(array());
-        ////}
+        if (!System::app()->isAdmin()) {
+            $this->redirect(array());
+        }
     }
 
     public function index() {
         $boards = Board::model()->findAll();
+
         $this->render('administration/boards', array(
             'boards' => $boards,
             'selection' => 'boards'
         ));
     }
 
-    public function cms() {
-        $csections = ContentSection::model()->findAll();
-        $this->render('administration/cms', array(
-            'csections' => $csections,
-            'selection' => 'cms'
-        ));
-    }
-
     public function editBoard() {
         $board = new Board();
-        
+
         if (isset($_GET['id']) && intval($_GET['id']) != 0) {
             $board = Board::model()->findByPk($_GET['id']);
         }
@@ -63,43 +56,49 @@ class Administration extends Controller {
         $this->render('administration/edit-board', array('board' => $board));
     }
 
+    public function cms() {
+        $csections = ContentSection::model()->findAll();
+
+        $this->render('administration/cms', array(
+            'csections' => $csections,
+            'selection' => 'cms'
+        ));
+    }
+
+    public function editContent() {
+        //TODO: not implemented yet
+    }
+
+    public function users() {
+        $users = User::model()->findAll();
+
+        $this->render('administration/users', array(
+            'lUsers' => $users,
+            'selection' => 'users'
+        ));
+    }
+
     public function editUser() {
         $user = new User();
-        
+
         if (isset($_GET['id']) && intval($_GET['id']) != 0) {
             $user = User::model()->findByPk($_GET['id']);
         }
 
         if (isset($_POST['User'])) {
             $user->name = $_POST['name'];
-            $user->password = $_POST['password'];
-            $user->group = $_POST['group'];
-            $user->active = $_POST['active'];
+            $user->password = User::hash($_POST['password']);
+
+            $user->group = intval($_POST['group']);
+            $user->active = intval($_POST['active']);
 
             if ($user->save()) {
-                $this->redirect(array('c' => 'administration', 'a' => 'edituser'), array('id' => $board->userID));
+                $this->redirect(array('c' => 'administration', 'a' => 'edituser'), array('id' => $user->userID));
             }
         }
         $this->render('administration/edit-user', array('user' => $user));
     }
 
-    public function editChar() {
-        $Character = new Character();
-        
-        if (isset($_GET['id']) && intval($_GET['id']) != 0) {
-            $user = User::model()->findByPk($_GET['id']);
-        }
-        $this->render('administration/edit-char', array('character' => $character));
-    }
-    
-    public function users() {
-        $users = User::model()->findAll();
-        $this->render('administration/users', array(
-            'lUsers' => $users,
-            'selection' => 'users'
-        ));
-    }
-    
     public function chars() {
         $chars = Character::model()->findAll();
         $this->render('administration/cms', array(
@@ -107,4 +106,32 @@ class Administration extends Controller {
             'selection' => 'chars'
         ));
     }
+
+    public function editChar() {
+        $character = new Character();
+
+        if (isset($_GET['id']) && intval($_GET['id']) != 0) {
+            $character = Character::model()->findByPk($_GET['id']);
+        }
+
+        if (isset($_POST['Character'])) {
+            $character->defense = intval($_POST['Character']);
+            $character->health = intval($_POST['Character']);
+            $character->intellect = intval($_POST['Character']);
+            $character->level = intval($_POST['Character']);
+            $character->luck = intval($_POST['Character']);
+            $character->name = $_POST['Character'];
+            $character->portrait = $_POST['Character'];
+            $character->sex = intval($_POST['Character']);
+            $character->strenght = intval($_POST['Character']);
+            $character->userID = intval($_POST['Character']);
+            $character->weight = intval($_POST['Character']);
+
+            if ($character->save()) {
+                $this->redirect(array('c' => 'administration', 'a' => 'editchar'), array('id' => $character->characterID));
+            }
+        }
+        $this->render('administration/edit-char', array('character' => $character));
+    }
+
 }
