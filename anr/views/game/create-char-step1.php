@@ -1,3 +1,5 @@
+<?php $this->registerScriptFile('_resources/js/charcreation.js'); ?>
+
 <div id="create-char">
     <form action="<?php echo $this->createURL(array('c' => 'game', 'a' => 'charcreation')); ?>" method="POST">
         <fieldset>
@@ -6,10 +8,17 @@
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" />
             </p>
+            
             <p>
-                <label for="portrait">Portrait</label>         
-                <img src="#" id="portrait"/>
-                <a href="#"><img src="#" id="previous" /></a>
+                Sex:
+                <input type="radio" name="sex" id="smale" class="nofloat" /> Male                
+                <input type="radio" name="sex" id="sfemale" class="nofloat" /> Female              
+            </p>
+
+            <p>
+                <label for="portrait"></label>
+                <img src="_resources/images/game/portraits/<?php echo $this->sex, '/', $this->portrait; ?>" id="portrait"/>
+                <a href="javascript:nextPortrait();"><img src="#" id="previous" /></a>
                 <a href="#"><img src="#" id="next" /></a>
             </p>
         </fieldset>

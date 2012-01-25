@@ -59,7 +59,12 @@ class Game extends Controller {
                     break;
             }
         } else {
-            $this->render('game/create-char-step1');
+            $portraits = $this->listPortraits();
+
+            $this->render('game/create-char-step1', array(
+                'portrait' => $portraits['male'][5],
+                'sex' => 'male'
+            ));
         }
 
         //3 passos: passo 1 dados base, passo 2 caracterisitas, passo 3 confirmação
@@ -80,24 +85,39 @@ class Game extends Controller {
         //valor aleatorio de pontos para gastar
     }
 
-    function t() {
-
+    private function listPortraits() {
         $found = array();
-        $path = WEBROOT . '/_resources/images/game/portraits/female';
-
-        $dh = opendir($path);
+        $dh = opendir(WEBROOT . '/_resources/images/game/portraits/female');
         if ($dh !== false) {
-
             while (($file = readdir($dh)) !== false) {
-                //apenas guardar pngs
-                $found[] = $file;
+                if (strpos($file, '.png') !== false) {
+                    $found['female'][] = $file;
+                }
             }
-
             closedir($dh);
         }
 
+        $dh = opendir(WEBROOT . '/_resources/images/game/portraits/male');
+        if ($dh !== false) {
+            while (($file = readdir($dh)) !== false) {
+                if (strpos($file, '.png') !== false) {
+                    $found['male'][] = $file;
+                }
+            }
+            closedir($dh);
+        }
 
         return $found;
     }
 
+    public function getNextPortrait() {
+        $all = $this->listPortraits();
+
+        $index = intval($_POST['index']);
+        $tipo = $_POST['tipo'];
+
+        die;
+    }
+
 }
+

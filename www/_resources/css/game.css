@@ -9,6 +9,11 @@
 
 }
 
+.nofloat {
+    float: none;
+    clear: both;
+}
+
 label{
 }
 
