@@ -84,7 +84,7 @@ class Administration extends Controller {
         $users = User::model()->findAll();
 
         $this->render('administration/users', array(
-            'lUsers' => $users,
+            'users' => $users,
             'selection' => 'users'
         ));
     }

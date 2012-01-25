@@ -7,7 +7,7 @@
         <li><a href="#character-list">Character List</a></li>
     </ul>
     <div id="edit-user">
-        <form action="index.php" method="POST">
+        S<form action="index.php" method="POST">
             <fieldset>
                 <legend>Edit User</legend>
                 <p>

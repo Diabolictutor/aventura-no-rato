@@ -1,6 +1,6 @@
 <form action="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'editboard'), array('id' => $this->board->boardID)); ?>" method="POST">
     <fieldset>
-        <legend>Edit Board</legend>
+        <legend>Create/Edit Board</legend>
         <p>
             <label for="title">Title:</label>
             <input type="text" name="title" id="title" class="text" value="<?php echo $this->board->title; ?>" />
