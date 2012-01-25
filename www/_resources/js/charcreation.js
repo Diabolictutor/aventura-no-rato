@@ -36,3 +36,8 @@ function initSliders() {
     });
         
 }
+
+function nextPortrait() {
+    $('#portrait').attr('src', '_resources/images/game/portraits/male/portrait-m20');
+    
+}
