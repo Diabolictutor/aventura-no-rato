@@ -1,10 +1,21 @@
 .side-menu{
     float: left;
     width: 19%;
+    background-color: blue;
 }
 
 .side-menu a{
     width: 100%;
+    margin-left: 0.3em;
+    padding-bottom: 0.5em;
+    font-family: verdana;
+    font-size: 16px;
+    color: lightgrey;
+}
+
+.side-menu h2 {
+    margin-left: 0.8em;
+    
 }
 
 .content{
@@ -14,4 +25,8 @@
 
 .active{
     background-color: red;
+}
+
+#board-list ul {
+    margin-top: 2em;
 }
