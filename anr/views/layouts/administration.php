@@ -5,10 +5,10 @@
 
         <link href="_resources/css/base.css" rel="stylesheet" type="text/css" />
 
-        <link href="_resources/css/black-tie/jquery-ui-full.css" rel="stylesheet" type="text/css"/>
+        <link href="_resources/css/cupertino/jquery-ui-1817.css" rel="stylesheet" type="text/css"/>
 
         <script src="_resources/js/jquery.min.js" type="text/javascript"></script>
-        <script src="_resources/js/jquery-ui-full.min.js" type="text/javascript"></script>
+        <script src="_resources/js/jquery-ui-1817.min.js" type="text/javascript"></script>
 
         <link href="_resources/css/administration.css" rel="stylesheet" type="text/css" />
 
