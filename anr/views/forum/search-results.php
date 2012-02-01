@@ -1,33 +1,13 @@
+<?php print_r($this->found);?>
+
 <h2>Results</h2>
 <!-- //TODO: list items not paragraphs -->
-<br><div class="result-row">
-    <a hre="#">title....</a>
+<br>
+<?php foreach ($found as $post) {?>
+<div class="result-row">
+    <a hre="#"><?php echo $post->title; ?></a>
     <p>
-        excerto........
+        <?php echo strip_tags(substr($post->post, 0, 200)); ?>
     </p>
-</div><br/>
-
-
-<br><div class="result-row">
-    <a hre="#">title....</a>
-    <p>
-        excerto........
-    </p>
-</div><br/>
-
-
-<br><div class="result-row">
-    <a hre="#">title....</a>
-    <p>
-        excerto........
-    </p>
-</div><br/>
-
-
-<br><div class="result-row">
-    <a hre="#">title....</a>
-    <p>
-        excerto........
-    </p>
-</div><br/>
-
+</div>
+<?php } ?>

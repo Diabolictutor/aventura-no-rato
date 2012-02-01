@@ -181,6 +181,27 @@ class Board extends ARBase {
 
         return $this->threads;
     }
+    
+    public function countThreads() {
+        
+        $found=0;
+        $query=sprintf("SELECT COUNT(threadID) FROM Thread WHERE boardID = %d", $this->boardID);
+        
+        if ($this->connect()) {
+            if (($resource = mysql_query($query))) {
+                while (($result = mysql_fetch_object($resource, 'Board')) !== false) {
+                    $result->newRecord = false;
 
+                    $found = $result;
+                }
+                mysql_free_result($resource);
+            }
+
+            $this->disconnect();
+        }
+        
+        
+    }
+    
 }
 
