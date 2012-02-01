@@ -45,3 +45,12 @@
 #reply input{
     border:1px solid black;
 }
+.board{
+    background-color:lightgrey;
+    width:100%;
+}
+h2{
+    background-color:darkgrey;
+    float:left;
+    width:100%;
+}
