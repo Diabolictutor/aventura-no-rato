@@ -11,13 +11,13 @@
             
             <p>
                 Sex:
-                <input type="radio" name="sex" id="smale" class="nofloat" /> Male                
-                <input type="radio" name="sex" id="sfemale" class="nofloat" /> Female              
+                <input type="radio" name="sex" id="smale" class="nofloat"  value="" /> Male                
+                <input type="radio" name="sex" id="sfemale" class="nofloat" value="" /> Female              
             </p>
 
             <p>
-                <label for="portrait"></label>
-                <img src="_resources/images/game/portraits/<?php echo $this->sex, '/', $this->portrait; ?>" id="portrait"/>
+                <!-- <label for="portrait"></label> -->
+                <img src="_resources/images/game/portraits/<?php echo $this->sex, '/', $this->portrait; ?>" id="portrait" width="150" height="100"/>
                 <a href="javascript:nextPortrait();"><img src="#" id="previous" /></a>
                 <a href="#"><img src="#" id="next" /></a>
             </p>

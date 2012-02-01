@@ -19,7 +19,7 @@ function initSliders() {
         max: 20,
         value: $('#defense').val()
     });
-       $('.slider-intellect').slider({
+    $('.slider-intellect').slider({
         min: 1,
         max: 20,
         value: $('#intellect').val()
@@ -29,7 +29,7 @@ function initSliders() {
         max: 20,
         value: $('#luck').val()
     });
-       $('.slider-health').slider({
+    $('.slider-health').slider({
         min: 1,
         max: 20,
         value: $('#health').val()
@@ -38,6 +38,12 @@ function initSliders() {
 }
 
 function nextPortrait() {
-    $('#portrait').attr('src', '_resources/images/game/portraits/male/portrait-m20');
+    $.ajax({
+        url: "",
+         success: function(){
+            
+        }
+    });
+//$('#portrait').attr('src', '_resources/images/game/portraits/male/portrait-m20');
     
 }

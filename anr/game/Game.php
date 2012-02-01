@@ -113,10 +113,19 @@ class Game extends Controller {
     public function getNextPortrait() {
         $all = $this->listPortraits();
 
-        $index = intval($_POST['index']);
-        $tipo = $_POST['tipo'];
+        $index = isset($_REQUEST['index']) ? intval($_REQUEST['index']) + 1 : 0;
+        $sex = isset($_REQUEST['sex'])
+                && in_array($_REQUEST['sex'], array('male', 'female')) ? $_REQUEST['sex'] : 'male';
 
-        die;
+        $max = count($all[$sex]);
+
+        if ($index < 0 || $index >= $max) {
+            $index = 0;
+        }
+        
+        echo json_encode(array(
+            'next' => $all[$sex][$index]
+        ));
     }
 
 }
