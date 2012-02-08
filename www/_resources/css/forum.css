@@ -54,3 +54,13 @@ h2{
     float:left;
     width:100%;
 }
+span{
+    background-color:darkgray;
+    float:left;
+    width:20%;
+    height:22px;
+    text-align:right;
+}
+.boardContent{
+    background-color:lightgray;
+}
