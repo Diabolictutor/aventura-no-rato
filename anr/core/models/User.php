@@ -25,52 +25,52 @@ class User extends ARBase {
      * @var int 
      */
     public $userID;
-    
+
     /**
      * @var string 
      */
     public $email;
-    
+
     /**
      * @var string
      */
     public $password;
-    
+
     /**
      * @var string
      */
     public $name;
-    
+
     /**
      * @var int
      */
     public $admin;
-    
+
     /**
      * @var string 
      */
     public $signature;
-    
+
     /**
      * @var string
      */
     public $website;
-    
+
     /**
      * @var string
      */
     public $lastLogin;
-    
+
     /**
      * @var int
      */
     public $active;
-    
+
     /**
      * @var string
      */
     public $avatar;
-    
+
     /**
      * @var int
      */

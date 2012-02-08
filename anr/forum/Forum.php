@@ -37,14 +37,14 @@ class Forum extends Controller {
      */
     public function search() {
         $porder = $torder = $pcriteria = null;
-        
+
         if ($_POST['searchtype'] == 'adv') {
-            if (isset($_POST['search'])&&isset($_POST['usearch'])) {
-                $pcriteria = "title= '".$_POST['search']. "' AND author='" .$_POST['usearch']."'";
-            }else if (isset($_POST['search'])) {
-                $pcriteria = "title= '".$_POST['search']."'";
-            }else if (isset($_POST['usearch'])) {
-                $pcriteria = "author= '".$_POST['usearch']."'";
+            if (isset($_POST['search']) && isset($_POST['usearch'])) {
+                $pcriteria = "title= '" . $_POST['search'] . "' AND author='" . $_POST['usearch'] . "'";
+            } else if (isset($_POST['search'])) {
+                $pcriteria = "title= '" . $_POST['search'] . "'";
+            } else if (isset($_POST['usearch'])) {
+                $pcriteria = "author= '" . $_POST['usearch'] . "'";
             }
 
             switch ($_POST['searchorder']) {
@@ -60,15 +60,12 @@ class Forum extends Controller {
                     $porder = $torder = 'ORDER BY title';
                     break;
             }
-           
-            
-                $found = Post::model()->findAll($pcriteria, $porder);                        
-                foreach ($found as $post) {
-                    $post->thread = Thread::model()->findByPk($post->threadID);
-                }
-                
-                
-                
+
+
+            $found = Post::model()->findAll($pcriteria, $porder);
+            foreach ($found as $post) {
+                $post->thread = Thread::model()->findByPk($post->threadID);
+            }
         } else if ($_POST['searchtype'] == 'regular') {
             
         }
@@ -127,5 +124,5 @@ class Forum extends Controller {
 
         $this->redirect(array('c' => 'forum', 'a' => 'thread'), array('id' => $post->threadID));
     }
-}
 
+}

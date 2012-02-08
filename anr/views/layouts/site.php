@@ -4,32 +4,33 @@
         <meta charset="utf-8" />
 
         <link href="_resources/css/base.css" rel="stylesheet" type="text/css" />
-
-        <link href="_resources/css/black-tie/jquery-ui-full.css" rel="stylesheet" type="text/css"/>
-
-        <script src="_resources/js/jquery.min.js" type="text/javascript"></script>
-        <script src="_resources/js/jquery-ui-full.min.js" type="text/javascript"></script>
-        
         <link href="_resources/css/site.css" rel="stylesheet" type="text/css" />
+        <link href="_resources/css/jquery-ui-1.8.17.css" rel="stylesheet" type="text/css"/>
+
+        <script src="_resources/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="_resources/js/jquery-ui-1.8.17.min.js" type="text/javascript"></script>
 
         <?php echo $this->getScriptSection(); ?>
-        
+
         <title><?php echo $this->title; ?></title>
     </head>
     <body>
         <div id="top">
             <div id="mainmenu">
                 <ul>
-                    <li class="active"><a href="<?php echo $this->createURL(); ?>" alt="Home">Home</a></li>
-                    <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'about')); ?>" alt="About">About</a></li>
-                    <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'credits')); ?>" alt="Credits">Credits</a></li>
-                    <li><a href="<?php echo $this->createURL(array('r' => 'forum',)); ?>" alt="Forum">Forum</a></li>
-                    <li><a href="<?php echo $this->createURL(array('r' => 'game')); ?>" alt="Play">Play</a></li>
+                    <li class="active"><a href="<?php echo $this->createURL(); ?>" title="Home">Home</a></li>
+                    <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'about')); ?>" title="About">About</a></li>
+                    <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'credits')); ?>" title="Credits">Credits</a></li>
+                    <li><a href="<?php echo $this->createURL(array('r' => 'forum',)); ?>" title="Forum">Forum</a></li>
+                    <li><a href="<?php echo $this->createURL(array('r' => 'game')); ?>" title="Play">Play</a></li>
                     <?php if (!System::app()->isGuest()) { ?>          
-                        <li><a href="<?php echo $this->createURL(array('c' => 'account')); ?>" alt="Account">Account</a></li>
-                        <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'logout')); ?>" alt="Logout">Logout</a></li>
+                        <li><a href="<?php echo $this->createURL(array('c' => 'account')); ?>" title="Manage Account">Account</a></li>
+                        <?php if (System::app()->isAdmin()) { ?>
+                            <li><a href="<?php echo $this->createURL(array('c' => 'administration')); ?>" title="System Administration">Administration</a></li>
+                        <?php } ?>
+                        <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'logout')); ?>" title="Logout">Logout</a></li>
                     <?php } else { ?>
-                        <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" alt="Login">Login</a></li>
+                        <li><a href="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" title="Login">Login</a></li>
                     <?php } ?>
                 </ul>
             </div>

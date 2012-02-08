@@ -27,7 +27,6 @@ class Account extends Controller {
 
     public function index() {
         $this->render('site/account');
-        
     }
 
 }

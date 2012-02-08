@@ -122,7 +122,7 @@ class Game extends Controller {
         if ($index < 0 || $index >= $max) {
             $index = 0;
         }
-        
+
         echo json_encode(array(
             'next' => $all[$sex][$index]
         ));

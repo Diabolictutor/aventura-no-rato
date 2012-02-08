@@ -19,12 +19,10 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>. 
  ##
 
-rm recreate.sql
-## 
-echo "DROP DATABASE IF EXISTS \`anr\` ;" >> recreate.sql
-echo "CREATE DATABASE \`anr\` ;" >> recreate.sql
-echo "USE \`anr\` ;" >> recreate.sql
-##
+echo "DROP DATABASE IF EXISTS anr ;"
+echo "CREATE DATABASE anr ;"
+echo "USE anr ;"
+
 for nome in v*/*.sql; do 
-    echo "SOURCE $nome" >> recreate.sql 
+    echo "SOURCE $nome"
 done    

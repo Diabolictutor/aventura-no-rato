@@ -158,11 +158,11 @@ class System {
      * @return boolean
      */
     public function isGuest() {
-        return!isset($_SESSION['user']);
+        return !isset($_SESSION['user']);
     }
 
     public function isAdmin() {
-        return (isset($_SERVER['user']) && ((int) $_SESSION['user']->admin) == 1);
+        return (isset($_SESSION['user']) && intval($_SESSION['user']->admin) === 1);
     }
 
 }

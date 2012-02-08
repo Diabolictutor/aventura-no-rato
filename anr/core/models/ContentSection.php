@@ -25,17 +25,17 @@ class ContentSection extends ARBase {
      * @var int
      */
     public $contentID;
-    
+
     /**
      * @var string
      */
     public $date;
-    
+
     /**
      * @var string 
      */
     public $description;
-    
+
     /**
      * @var string 
      */

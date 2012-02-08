@@ -132,4 +132,5 @@ abstract class ARBase {
     public static function model() {
         
     }
+
 }
