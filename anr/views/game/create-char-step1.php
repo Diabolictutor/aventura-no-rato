@@ -4,27 +4,38 @@
     <form action="<?php echo $this->createURL(array('c' => 'game', 'a' => 'charcreation')); ?>" method="POST">
         <fieldset>
             <legend>Character Wizard (1/3)</legend>
-            <p>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" />
-            </p>
-            
-            <p>
-                Sex:
-                <input type="radio" name="sex" id="smale" class="nofloat"  value="" /> Male                
-                <input type="radio" name="sex" id="sfemale" class="nofloat" value="" /> Female              
-            </p>
+            <div class="form-row">
+                <label for="Character[name]">Name</label>
+                <input type="text" name="Character[name]" id="name" />
+            </div >
 
-            <p>
-                <!-- <label for="portrait"></label> -->
-                <img src="_resources/images/game/portraits/<?php echo $this->sex, '/', $this->portrait; ?>" id="portrait" width="150" height="100"/>
-                <a href="javascript:nextPortrait();"><img src="#" id="previous" /></a>
-                <a href="#"><img src="#" id="next" /></a>
-            </p>
+            <div class="form-row">
+                <label for="Character[sex]">Sex</label>
+                <input type="radio" name="Character[sex]" id="smale"  class="form-row" value="" /> Male                
+                <input type="radio" name="Character[sex]" id="sfemale" class="form-row" value="" /> Female              
+            </div>
+
+            <div class="form-row">
+                <label>Portrait</label>
+                <div id="portrait">
+                    <img src="_resources/images/game/portraits/<?php echo $this->sex, '/', $this->portrait; ?>"
+                         id="portraitImg" width="320" height="240" />
+                    <br />
+                    <a id="previous" href="javascript:;" onclick="previousPortrait();">
+                        <img src="_resources/images/game/interface/previous.30x34.png" />
+                    </a>
+                    <a id="next" href="javascript:;" onclick="nextPortrait();">
+                        <img src="_resources/images/game/interface/next.30x34.png" />
+                    </a>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+
         </fieldset>
-        <p>
+        <div class="form-row">
             <button type="submit" name="step"><img src="_resources/images/game/interface/next.38x40.png" /></button>
-        </p>
+        </div>
         <input type="hidden" value="2" name="step" />
     </form>
 </div>

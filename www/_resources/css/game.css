@@ -25,20 +25,9 @@ body {
 
 }
 
-#create-char form input {
-    float: right;
-    margin-right: 2em;
-    padding: 0;
 
-}
 
-.nofloat {
-    float: none;
-    clear: both;
-}
 
-label{
-}
 
 .widget-left {
     float: left;
@@ -48,3 +37,5 @@ label{
     width: 40%;
     float: left;
 }
+
+    

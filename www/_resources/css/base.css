@@ -135,3 +135,15 @@ input, textarea, select {
 button {
     background-color: transparent;
 }
+
+label {
+display: block;
+float: left;
+width: 150px;
+}
+div.form-row{
+    clear: both;
+    margin: 10px 0 5px 0;
+        
+}
+
