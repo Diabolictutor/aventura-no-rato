@@ -185,20 +185,42 @@ class Board extends ARBase {
     public function countThreads() {
 
         $found = 0;
-        $query = sprintf("SELECT COUNT(threadID) FROM Thread WHERE boardID = %d", $this->boardID);
+        $query = sprintf("SELECT COUNT(threadID) AS 'found' FROM Thread WHERE boardID = %d", $this->boardID);
 
         if ($this->connect()) {
             if (($resource = mysql_query($query))) {
-                while (($result = mysql_fetch_object($resource, 'Board')) !== false) {
-                    $result->newRecord = false;
-
-                    $found = $result;
+                while (($result = mysql_fetch_object($resource)) !== false) {
+                    $found = $result->found;
                 }
                 mysql_free_result($resource);
             }
 
             $this->disconnect();
         }
+        return $found;
+    }
+
+    public function latestPost($id) {
+        $result = null;
+
+        $query = sprintf("
+            SELECT Post.title, Thread.threadID
+              FROM Post 
+        INNER JOIN Thread ON Post.threadID = Thread.threadID
+             WHERE boardID = %d
+          ORDER BY Post.created DESC 
+             LIMIT 1", $id);
+
+        if ($this->connect()) {
+            if (($resource = mysql_query($query))){
+                $result = mysql_fetch_object($resource);
+
+                mysql_free_result($resource);
+            }
+            $this->disconnect();
+        }
+
+        return $result;
     }
 
 }

@@ -5,7 +5,7 @@
             <div id="postframe">
                 <div id="userol">
                     <div id="userimg"></div>
-                    <div id="useril"><?php echo $post->author; ?></div>
+                    <div id="useril"><?php echo $post->author->name; ?></div>
                 </div>
                 <div id="post">
                     <?php echo $post->post; ?>
@@ -17,9 +17,10 @@
 </div>
 <div id="reply">
     <form action="<?php echo $this->createUrl(array('c' => 'forum', 'a' => 'reply')); ?>" method="POST">
-        <input type="text" id="title" name="title" value="RE: <?php $this->title ?>"/>
+        <label for="title">Title:</label><input type="text" id="title" name="title" value="RE: <?php $this->title ?>"/>
         <br />
-        <textarea name="message" id="message"></textarea>
+        <label for="message">Reply:</label><br />
+        <textarea name="message" rows="5" cols="255" id="message"></textarea>
         <br />
         <input type="submit" value="Send" />
 

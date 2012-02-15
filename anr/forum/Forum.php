@@ -127,7 +127,4 @@ class Forum extends Controller {
 
         $this->redirect(array('c' => 'forum', 'a' => 'thread'), array('id' => $post->threadID));
     }
-
 }
-
-

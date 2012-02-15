@@ -1,5 +1,5 @@
 #thtitle {
-    background-color:green;
+    background-color:grey;
     width:100%;
 }
 
@@ -11,7 +11,7 @@
     float:left;
     width:25%;
     height:175px;
-    background-color:lightgreen;
+    background-color:darkgrey;
     text-align:center;
 }
 
@@ -29,7 +29,7 @@
     float:right;
     width:75%;
     height:175px;
-    background-color:lightgoldenrodyellow;
+    background-color:lightgrey;
 }
 
 #reply {
@@ -37,8 +37,8 @@
 }
 
 #reply textarea {
-    width:750px;
-    height:250px;
+    width:500px;
+    height:50px;
     border:1px solid black;
 }
 
@@ -49,18 +49,20 @@
     background-color:lightgrey;
     width:100%;
 }
-h2{
-    background-color:darkgrey;
-    float:left;
-    width:100%;
-}
-span{
-    background-color:darkgray;
-    float:left;
-    width:20%;
-    height:22px;
-    text-align:right;
+
+h2 {
+    background-color: darkgrey;
+    float: left;
+    width: 20%;
 }
 .boardContent{
-    background-color:lightgray;
+    background-color: lightgray;
+    width:50%;
+}
+.tc {
+    width: 10%;
+    background-color: darkgray;
+    text-align: right;
+    float: left;
+    height: 22px;
 }
