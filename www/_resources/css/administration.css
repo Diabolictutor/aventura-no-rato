@@ -17,35 +17,50 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-.side-menu{
+#side-menu {
     float: left;
-    width: 19%;
-    background-color: blue;
+    width: 20%;
 }
 
-.side-menu a{
-    width: 100%;
-    margin-left: 0.3em;
-    padding-bottom: 0.5em;
-    font-family: verdana;
-    font-size: 16px;
-    color: lightgrey;
+#side-menu li {
+    padding: 0.2em 0 0.2em 16px;
 }
 
-.side-menu h2 {
-    margin-left: 0.8em;
-
+#side-menu li:hover {
+    background-image: url(../images/icons/arrow-000-small.png);
+    background-repeat: no-repeat;
 }
 
-.content{
+#side-menu li.active a {
+    text-decoration: underline;
+}
+
+#side-menu h2 {
+}
+
+.admin-content{
     float: left;
     width: 79%;
 }
 
-.active{
-    background-color: red;
+.admin-content ul {
+    padding-left: 2em;
 }
 
-#board-list ul {
-    margin-top: 2em;
+.admin-content h2 {
+    float: left;
+    width: 90%;
+}
+
+.admin-content h2 a.tools {
+    float: right;
+    width: 16px;
+}
+
+.cancel-link{
+    
+}
+
+.form-row {
+    
 }

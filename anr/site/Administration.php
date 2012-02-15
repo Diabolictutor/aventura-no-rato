@@ -46,8 +46,10 @@ class Administration extends Controller {
         }
 
         if (isset($_POST['Board'])) {
-            $board->title = $_POST['title'];
-            $board->position = $_POST['position'];
+            $postData = $_POST['Board'];
+
+            $board->title = $postData['title'];
+            $board->position = $postData['position'];
 
             if ($board->save()) {
                 $this->redirect(array('c' => 'administration', 'a' => 'editboard'), array('id' => $board->boardID));
@@ -73,8 +75,10 @@ class Administration extends Controller {
         }
 
         if (isset($_POST['ContentSection'])) {
-            $content->description = $_POST['description'];
-            $content->content = $_POST['content'];
+            $postCont = $_POST['content'];
+            
+            $content->description = $postCont['description'];
+            $content->content = $postCont['content'];
         }
 
         $this->render('administration/edit-content', array('content' => $content));
@@ -97,11 +101,13 @@ class Administration extends Controller {
         }
 
         if (isset($_POST['User'])) {
-            $user->name = $_POST['name'];
-            $user->password = User::hash($_POST['password']);
+            $postUser = $_POST['user'];
+            
+            $user->name = $postUser['name'];
+            $user->password = User::hash($postUser['password']);
 
-            $user->group = intval($_POST['group']);
-            $user->active = intval($_POST['active']);
+            $user->group = intval($postUser['group']);
+            $user->active = intval($postUser['active']);
 
             if ($user->save()) {
                 $this->redirect(array('c' => 'administration', 'a' => 'edituser'), array('id' => $user->userID));
@@ -126,17 +132,19 @@ class Administration extends Controller {
         }
 
         if (isset($_POST['Character'])) {
-            $character->defense = intval($_POST['Character']);
-            $character->health = intval($_POST['Character']);
-            $character->intellect = intval($_POST['Character']);
-            $character->level = intval($_POST['Character']);
-            $character->luck = intval($_POST['Character']);
-            $character->name = $_POST['Character'];
-            $character->portrait = $_POST['Character'];
-            $character->sex = intval($_POST['Character']);
-            $character->strenght = intval($_POST['Character']);
-            $character->userID = intval($_POST['Character']);
-            $character->weight = intval($_POST['Character']);
+            $postChar = $_POST['character'];
+            
+            $character->defense = intval($postChar['Character']);
+            $character->health = intval($postChar['Character']);
+            $character->intellect = intval($postChar['Character']);
+            $character->level = intval($postChar['Character']);
+            $character->luck = intval($postChar['Character']);
+            $character->name = $postChar['Character'];
+            $character->portrait = $postChar['Character'];
+            $character->sex = intval($postChar['Character']);
+            $character->strenght = intval($postChar['Character']);
+            $character->userID = intval($postChar['Character']);
+            $character->weight = intval($postChar['Character']);
 
             if ($character->save()) {
                 $this->redirect(array('c' => 'administration', 'a' => 'editchar'), array('id' => $character->characterID));

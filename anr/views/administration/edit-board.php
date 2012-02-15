@@ -1,16 +1,23 @@
 <form action="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'editboard'), array('id' => $this->board->boardID)); ?>" method="POST">
     <fieldset>
-        <legend>Create/Edit Board</legend>
-        <p>
-            <label for="title">Title:</label>
-            <input type="text" name="title" id="title" class="text" value="<?php echo $this->board->title; ?>" />
-        </p>
-        <p>
-            <label for="title">Position:</label>
-            <input type="text" name="position" id="edit-board" class="text" value="<?php echo $this->board->position; ?>" />
-        </p>
+        <legend><?php echo ($this->board->newRecord ? 'Create' : 'Edit'); ?> Board</legend>
+        <div class="form-row">
+            <label for="title">Title</label>
+            <input type="text" 
+                   name="Board[title]" 
+                   id="title" 
+                   value="<?php echo $this->board->title; ?>" />
+        </div>
+        <div class="form-row">
+            <label for="title">Position</label>
+            <input type="text" 
+                   name="Board[position]" 
+                   id="position" 
+                   value="<?php echo $this->board->position; ?>" />
+        </div>
     </fieldset>
-    <input type="submit" value="<?php echo ($this->board->newRecord ? 'Create' : 'Save'); ?>" name="Board" />
-    <input type="hidden" name="Board" />
-    <a href="<?php echo $this->createURl(array('c' => 'administration', 'a' => 'editboard')); ?>"></a>
+    <div class="form-row">
+        <input type="submit" value="<?php echo ($this->board->newRecord ? 'Create' : 'Save'); ?>" />
+        <a href="<?php echo $this->createUrl(array('c' => 'administration')) ?>" class="cancel-link">Cancel</a>
+    </div>
 </form>
