@@ -1,4 +1,4 @@
-<div class="side-menu">
+<div id="side-menu">
     <h2>Administration</h2>
     <ul>
         <li <?php echo ($this->selection == 'boards' ? 'class="active"' : ''); ?>><a href="<?php echo $this->createURL(array('c' => 'administration', 'a' => 'index')); ?>">Board Administration</a></li>

@@ -1,6 +1,6 @@
 <?php echo $this->includeViewFile('administration/_admin-menu'); ?>
 
-<div id="user-list">
+<div id="user-list" class="admin-content">
 
     <h2 style="text-align:center;">Users</h2>
     <form action="<?php $this->createUrl(array('c' => 'administration', 'a' => 'searchuser')); ?>" 

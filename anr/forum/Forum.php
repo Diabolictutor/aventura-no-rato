@@ -29,7 +29,10 @@ class Forum extends Controller {
      * Forum root
      */
     public function index() {
-        $this->render('forum/index');
+        $boards = Board::model()->findAll();
+        $this->render('forum/index', array(
+            'boards' => $boards
+        ));
     }
 
     /**
@@ -126,3 +129,5 @@ class Forum extends Controller {
     }
 
 }
+
+

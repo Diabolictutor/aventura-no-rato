@@ -1,5 +1,5 @@
 <?php echo $this->includeViewFile('administration/_admin-menu'); ?>
-<div>
+<div id="cms-list" class="admin-content">
     <h2 style="text-align:center;">CMS Pages</h2>
     <?php if (count($this->csections)) { ?>
         <ul>
