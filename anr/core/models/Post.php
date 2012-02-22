@@ -54,6 +54,12 @@ class Post extends ARBase {
     /**
      * @var string 
      */
+    public $active;
+    
+    /**
+     *
+     * @var int 
+     */
     public $post;
 
     /**

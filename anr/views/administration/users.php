@@ -16,3 +16,4 @@
         </ul>
     </form>
 </div>
+<div class="clear"></div>

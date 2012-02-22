@@ -35,6 +35,11 @@ class Board extends ARBase {
      * @var int
      */
     public $position;
+    
+    /**
+     * @var int
+     */
+    public $active;
 
     //Properties that are based on model relations
 
@@ -123,6 +128,7 @@ class Board extends ARBase {
         $this->boardID = $temp->boardID;
         $this->title = $temp->title;
         $this->position = $temp->position;
+        $this->active = $temp->active;
     }
 
     /**
@@ -150,8 +156,9 @@ class Board extends ARBase {
             $update = sprintf("
                 UPDATE `Board` SET 
                     `title` = '%s',
-                    `position` = %d
-                WHERE `boardID` = %d", $this->title, $this->position, $this->boardID
+                    `position` = %d,
+                    `active` = %d
+                WHERE `boardID` = %d", $this->title, $this->position,$this->active, $this->boardID
             );
 
             if ($this->connect()) {

@@ -49,6 +49,12 @@ class Thread extends ARBase {
     /**
      * @var int
      */
+    public $active;
+    
+    /**
+     *
+     * @var int 
+     */
     public $authorID;
 
     /**

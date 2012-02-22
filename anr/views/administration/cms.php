@@ -11,3 +11,4 @@
         Não foram encontradas secções.
     <?php } ?>
 </div>
+<div class="clear"></div>

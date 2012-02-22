@@ -30,7 +30,7 @@ class Administration extends Controller {
     }
 
     public function index() {
-        $boards = Board::model()->findAll();
+        $boards = Board::model()->findAll('active = 1');
 
         $this->render('administration/boards', array(
             'boards' => $boards,
@@ -118,7 +118,7 @@ class Administration extends Controller {
 
     public function chars() {
         $chars = Character::model()->findAll();
-        $this->render('administration/cms', array(
+        $this->render('administration/chars', array(
             'lChars' => $chars,
             'selection' => 'chars'
         ));
@@ -153,4 +153,42 @@ class Administration extends Controller {
         $this->render('administration/edit-char', array('character' => $character));
     }
 
+    public function deleteBoard() {
+        $board = Board::model()->findByPk($_GET['id']);
+        
+        if($board != null) {
+            $board->active = 0;
+            if(!$board->save()) {
+                $error = 'Unable to delete the requested board.';
+            }
+        }
+        
+        $this->redirect(array('c' => 'administration'), $error);
+    }
+    
+    public function deleteChar() {
+        $char = Character::model()->findByPk($_GET['id']);
+        
+        if($char != null) {
+            $char->active = 0;
+            if(!$char->save()) {
+                $error = 'Unable to delete the requested character.';
+            }
+        }
+        
+        $this->redirect(array('c' => 'administration', 'a' => 'char'), $error);
+    }
+    
+    public function deleteUser() {
+        $user = User::model()->findByPk($_GET['id']);
+        
+        if($user != null) {
+            $user->active = 0;
+            if(!$user->save()) {
+                $error = 'Unable to delete the requested user.';
+            }
+        }
+        
+        $this->redirect(array('c' => 'administration', 'a' => 'users'), $error);
+    }
 }
