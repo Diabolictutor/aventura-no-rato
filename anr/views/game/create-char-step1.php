@@ -21,10 +21,13 @@
                     <img src="_resources/images/game/portraits/<?php echo $this->sex, '/', $this->portrait; ?>"
                          id="portraitImg" width="320" height="240" />
                     <br />
-                    <a id="previous" href="javascript:;" onclick="previousPortrait();">
+                    <a id="previous" href="javascript:$previousPortraitUrl = $this->createURL(array('c' => 'game', 'a' => 'getpreviousportrait'));
+;" onclick="previousPortrait('<?php echo $previousPortraitUrl; ?>');"
+>
                         <img src="_resources/images/game/interface/previous.30x34.png" />
                     </a>
-                    <a id="next" href="javascript:;" onclick="nextPortrait();">
+                    <a id="next" href="javascript:$nextPortraitUrl = $this->createURL(array('c' => 'game', 'a' => 'getnextportrait'));
+;" onclick="nextPortrait('<?php echo $nextPortraitUrl; ?>');">
                         <img src="_resources/images/game/interface/next.30x34.png" />
                     </a>
 
@@ -33,9 +36,18 @@
             </div>
 
         </fieldset>
-        <div class="form-row">
-            <button type="submit" name="step"><img src="_resources/images/game/interface/next.38x40.png" /></button>
+        <div class="form-row" id="nextStepDiv">
+            <a href="#">Cancel</a>
+            <a href="javascript:;" onclick="submitStepOne();" id="nextStep">
+                <img src="_resources/images/game/interface/next.30x34.png" />
+            </a>
         </div>
-        <input type="hidden" value="2" name="step" />
-    </form>
+        <form id="formStep1" action="<?php
+echo
+$this->createURL(array('c' => 'game', 'a' => 'charcreation')
+        , array('step1'))
+?>"method="POST">
+
+
+        </form>
 </div>

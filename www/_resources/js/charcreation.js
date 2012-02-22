@@ -56,13 +56,51 @@ function initSliders() {
         
 }
 
-function nextPortrait() {
+
+function nextPortrait(url) {
     $.ajax({
-        url: "",
-        success: function(){
-            
+        url: url,
+        dataType: 'json',
+        type: 'POST',
+        data: {
+            index: index,
+            sex: $("#male").is("selected") ? 0 : 1
+        },
+        success: function(response){
+            if (response.success){
+                index = response.index;
+                $("#portraitImg").attr({
+                    src: "resources/images/game/portraits/" + response.sex + "/" + response.image
+                });
+            }
         }
     });
-//$('#portrait').attr('src', '_resources/images/game/portraits/male/portrait-m20');
+        
+}
+
+function submitStepOne(){
     
+};
+    
+    
+function previousPortrait(url) {
+    
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        type: 'POST',
+        data: {
+            index: index,
+            sex: $("#male").is("selected") ? 0 : 1
+        },
+        success: function(response){
+            if(response.success) {
+                index = response.index;
+                $("#portraitImg").attr({
+                    src: "_resources/images/game/portraits/"
+                    + response.sex + "/" - response.image
+                });
+            }
+        }
+    });
 }

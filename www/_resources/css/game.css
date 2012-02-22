@@ -38,4 +38,25 @@ body {
     float: left;
 }
 
-    
+
+#portrait {
+    float: left;
+    width: 326px;
+    text-align: center;
+}
+
+#portrait #next {
+    float: right;
+}
+
+#portrait #previous {
+    float: left;
+}
+
+#nextStepDiv{
+    padding: 0 2em 0 2em;
+}
+
+#nextStep{
+    float: right;
+}
