@@ -202,7 +202,7 @@ class Post extends ARBase {
                     `threadID`
                     ) 
                 VALUES ('%s', '%s', %d, '%s', %d)"
-                    , $this->title, $this->created, $this->authorID, $this->threadID);
+                    , $this->title, $this->created, $this->authorID, $this->post, $this->threadID);
 
             if ($this->connect()) {
 

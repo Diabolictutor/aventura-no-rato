@@ -89,7 +89,7 @@ class Forum extends Controller {
 
         $this->render('forum/board', array(
             'boardID' => $board->boardID,
-            'title' => $board->title,
+            'boardTitle' => $board->title,
             'threads' => $board->loadThreads()
         ));
     }
@@ -119,12 +119,46 @@ class Forum extends Controller {
         $post->modified = $date;
 
         $post->threadID = intval($_POST['threadID']);
-        $post->authorID = System::app()->getUser()->userID;
+        $post->authorID = System::app()->getUser()->id;
 
         if (!$post->save()) {
-            //TODO: show error message to the user
+            echo "Resposta inválida";
+            echo "<a href=" . $this->createUrl(array('c' => 'forum', 'a' => 'thread'), array('id' => $post->threadID)) . ">Continuar</a> ";
+            die;
         }
 
         $this->redirect(array('c' => 'forum', 'a' => 'thread'), array('id' => $post->threadID));
     }
+
+    public function newThread() {
+        $thread = new Thread();
+        $boardID = intval($_GET['bid']);
+        
+        if (isset($_POST['Thread'])){
+            
+            $threadData = $_POST['Thread'];
+            $post = new Post();
+
+            $thread->title = $post->title = $threadData['title'];
+            $post->post = $threadData['message'];
+
+            $date = date('Y-m-d H:i:s');
+            $thread->date = $post->created = $date;
+            $post->modified = $date;
+            $thread->boardID = intval($threadData['boardID']);
+
+            $thread->authorID = $post->authorID = System::app()->getUser()->id;
+            if (!$thread->save() && !$post->save()) {
+                echo "Resposta inválida";
+                echo "<a href=" . $this->createUrl(array('c' => 'forum', 'a' => 'thread'), array('id' => $post->threadID)) . ">Continuar</a> ";
+                die;
+            }
+            $this->redirect(array('c' => 'forum', 'a' => 'thread'), array('id' => $thread->threadID));
+        }
+
+        //$this->redirect(array('c' => 'forum', 'a' => 'thread'), array('id' => $post->threadID));
+
+        $this->render('forum/newthread', array('boardID' => $boardID));
+    }
+
 }
