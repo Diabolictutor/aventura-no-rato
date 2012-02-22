@@ -1,7 +1,10 @@
-<?php $this->registerScriptFile('_resources/js/charcreation.js'); ?>
+<?php
+$this->registerScriptFile('_resources/js/charcreation.js');
+$nextPortraitUrl = $this->createURL(array('c' => 'game', 'a' => 'getnextportrait'));
+?>
 
 <div id="create-char">
-    <form action="<?php echo $this->createURL(array('c' => 'game', 'a' => 'charcreation')); ?>" method="POST">
+    <form id="formStep1" action="<?php echo $this->createURL(array('c' => 'game', 'a' => 'charcreation'), array('step1')) ?>" method="POST">
         <fieldset>
             <legend>Character Wizard (1/3)</legend>
             <div class="form-row">
@@ -22,12 +25,11 @@
                          id="portraitImg" width="320" height="240" />
                     <br />
                     <a id="previous" href="javascript:$previousPortraitUrl = $this->createURL(array('c' => 'game', 'a' => 'getpreviousportrait'));
-;" onclick="previousPortrait('<?php echo $previousPortraitUrl; ?>');"
->
+                       ;" onclick="previousPortrait('<?php echo $previousPortraitUrl; ?>');">
                         <img src="_resources/images/game/interface/previous.30x34.png" />
                     </a>
                     <a id="next" href="javascript:$nextPortraitUrl = $this->createURL(array('c' => 'game', 'a' => 'getnextportrait'));
-;" onclick="nextPortrait('<?php echo $nextPortraitUrl; ?>');">
+                       ;" onclick="nextPortrait('<?php echo $nextPortraitUrl; ?>');">
                         <img src="_resources/images/game/interface/next.30x34.png" />
                     </a>
 
@@ -42,12 +44,6 @@
                 <img src="_resources/images/game/interface/next.30x34.png" />
             </a>
         </div>
-        <form id="formStep1" action="<?php
-echo
-$this->createURL(array('c' => 'game', 'a' => 'charcreation')
-        , array('step1'))
-?>"method="POST">
 
-
-        </form>
+    </form>
 </div>

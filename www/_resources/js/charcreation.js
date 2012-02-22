@@ -80,9 +80,9 @@ function nextPortrait(url) {
 
 function submitStepOne(){
     
-};
+}
     
-    
+var index = 0;    
 function previousPortrait(url) {
     
     $.ajax({
