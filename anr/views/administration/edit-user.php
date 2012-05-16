@@ -7,30 +7,25 @@
         <li><a href="#character-list">Character List</a></li>
     </ul>
     <div id="edit-user">
-        S<form action="index.php" method="POST">
+        <form action="#" method="POST">
             <fieldset>
                 <legend>Edit User</legend>
-                <p>
-                    <label for="email">E-mail:</label>
-                    <input type="text" name="email" id="email" />
-                </p>
-                <p>
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" id="name" />
-                </p>
-                <p>
-                    <label for="name">Signature:</label>
-                    <input type="text" name="name" id="signature" />
-                </p>
-                <p>
-                    <label for="name">Avatar:</label>
-                    <input type="text" name="name" id="avatar" />
-                </p>
-                <p>
-                    <input type="submit" value="Submit" />
-                    <input type="hidden" name="User" />
-                </p>
+                <label for="email">E-mail:</label>
+                <input type="text" name="email" id="email" />
+
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" />
+
+                <label for="name">Signature:</label>
+                <input type="text" name="name" id="signature" />
+
+                <label for="name">Avatar:</label>
+                <input type="text" name="name" id="avatar" />
             </fieldset>
+
+            <input type="submit" value="Submit" />
+
+            <input type="hidden" name="User" />
         </form>
     </div>
 

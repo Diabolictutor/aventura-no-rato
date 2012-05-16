@@ -4,14 +4,11 @@
           method="POST">
         <fieldset>
             <legend>Edit Content</legend>
-            <p>
-                <label for="Description">Description:</label>
-                <input type="text" name="Description" id="description"/>
-            </p>
-            <p>
-                <label for="Content">Content:</label>
-                <input type="text" name="Content" id="content"/>
-            </p>
+            <label for="Description">Description:</label>
+            <input type="text" name="Description" id="description"/>
+            
+            <label for="Content">Content:</label>
+            <input type="text" name="Content" id="content"/>
         </fieldset>
     </form>
 </div>

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
 
+        <link href="_resources/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="_resources/css/base.css" rel="stylesheet" type="text/css" />
         <link href="_resources/css/site.css" rel="stylesheet" type="text/css" />
         <link href="_resources/css/jquery-ui-1.8.17.css" rel="stylesheet" type="text/css"/>

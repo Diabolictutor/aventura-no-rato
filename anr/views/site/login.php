@@ -6,20 +6,17 @@
     <form action="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" method="POST">
         <fieldset>
             <legend>Login</legend>
-            <p>
-                <label for="email">E-mail:</label>
-                <input type="text" name="email" id="email" />
-            </p>
-            <p>
-                <label for="pw">Password:</label>
-                <input type="password" name="password" id="pw" />
-            </p>
+            <label for="email">E-mail:</label>
+            <input type="text" name="email" id="email" />
+
+            <label for="pw">Password:</label>
+            <input type="password" name="password" id="pw" />
         </fieldset>
-        <p>
-            <input type="submit" value="Submit" name="login" />
-        </p>
+
+        <input type="submit" value="Submit" name="login" />
     </form>
 </div>
+
 <div id="register" style="float: left; width: 49%">
     <?php if (!empty($this->error)) { ?>
         <p><?php echo $this->error; ?></p>
@@ -27,26 +24,20 @@
     <form action="<?php echo $this->createURL(array('c' => 'site', 'a' => 'login')); ?>" method="POST">
         <fieldset>
             <legend>Register</legend>
-            <p>
-                <label for="email">E-mail:</label>
-                <input type="text" name="email" id="email" />
-            </p>
-            <p>
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name" />
-            </p>
-            <p>
-                <label for="pw">Password:</label>
-                <input type="password" name="password" id="pw" />
-            </p>
-            <p>
-                <label for="pw2">Repeat Password:</label>
-                <input type="password" name="password2" id="pw2" />
-            </p>
+
+            <label for="email">E-mail:</label>
+            <input type="text" name="email" id="email" />
+
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" />
+
+            <label for="pw">Password:</label>
+            <input type="password" name="password" id="pw" />
+
+            <label for="pw2">Repeat Password:</label>
+            <input type="password" name="password2" id="pw2" />
         </fieldset>
-        <p>
-            <input type="submit" value="Submit" name="register" />
-        </p>
+        <input type="submit" value="Submit" name="register" />
     </form>
 </div>
 <!-- //TODO: create/use .clear class -->

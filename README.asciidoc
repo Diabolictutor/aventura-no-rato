@@ -20,7 +20,7 @@ includes using version control systems (Git), properly document the code, auxili
 tools and scripts (bash scripts for database automation, packaging, etc), properly 
 structure project files.
 
-Code:: Learn PHP using objected oriented approaches, create boostramp files and 
+Code:: Learn PHP using objected oriented approaches, create _boostramp_ files and 
 basic template system with separation between request controllers and views. 
 Learn SQL, JS and CSS in a very basic way.
 

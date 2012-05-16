@@ -20,7 +20,7 @@ body {
     font-size: 10pt;
     margin: 0;
     padding: 0; 
-    font-family: Helvetica, Verdana, Arial, san-serif;
+    font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #top {
@@ -59,7 +59,6 @@ body {
     text-decoration: none;
     color: white;
     background-color: #222; 
-
 }
 
 #mainmenu ul li.active {
@@ -97,16 +96,6 @@ legend {
     padding: 0 1em 0 1em;
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    margin: 0;
-    padding: 0;
-}
-
 ul, li {
     list-style: none;
 }
@@ -125,13 +114,14 @@ button {
 }
 
 label {
-display: block;
-float: left;
-width: 150px;
+    display: block;
+    float: left;
+    width: 150px;
 }
+
 div.form-row{
     clear: both;
     margin: 10px 0 5px 0;
-        
+
 }
 

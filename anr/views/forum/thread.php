@@ -18,10 +18,10 @@
 <div id="reply">
     <form action="<?php echo $this->createUrl(array('c' => 'forum', 'a' => 'reply')); ?>" method="POST">
         <label for="title">Title:</label><input type="text" id="title" name="title" value="RE: <?php $this->title ?>"/>
-        <br />
+        
         <label for="message">Reply:</label><br />
         <textarea name="message" rows="5" cols="255" id="message"></textarea>
-        <br />
+        
         <input type="submit" value="Send" />
 
         <input type="hidden" name="threadID" value="<?php echo $this->threadID; ?>" />

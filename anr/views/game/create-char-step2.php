@@ -25,28 +25,28 @@ $this->registerScript('initSliders()', View::$POS_INIT);
                 <label>Defense</label>
                 <input type="text" name="defense" id="defense" size="4" value="<?php echo $this->stats->defense; ?>" />
             </div>
-             <div class="slider-defense"></div>
+            <div class="slider-defense"></div>
             <div class="clear"></div> 
 
             <div class="widget-left">
                 <label>Intellect</label>  
                 <input type="text" name="intellect" id="intellect" size="4" value="<?php echo $this->stats->intellect; ?>" />
             </div>
-           <div class="slider-intellect"></div>
+            <div class="slider-intellect"></div>
             <div class="clear"></div>    
 
             <div class="widget-left">
                 <label>Luck</label>  
                 <input type="text" name="luck" id="luck" size="4" value="<?php echo $this->stats->luck; ?>" />
             </div>
-         <div class="slider-luck"></div>
+            <div class="slider-luck"></div>
             <div class="clear"></div>  
 
             <div class="widget-left">
                 <label>Health</label>     
                 <input type="text" name="health" id="health" size="4" value="<?php echo $this->stats->health; ?>"/>     
             </div>
-          <div class="slider-health"></div>
+            <div class="slider-health"></div>
             <div class="clear"></div>
         </fieldset>
         <p>

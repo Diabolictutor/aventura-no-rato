@@ -10,8 +10,11 @@
 
         <ul>
             <?php foreach ($this->users as $user) { ?>
-                <li><a href="<?php $this->createUrl(array('c' => 'administration', 'a' => 'edituser')); ?>">
-                        <?php $user ?></a></li>
+                <li>
+                    <a href="<?php $this->createUrl(array('c' => 'administration', 'a' => 'edituser')); ?>">
+                        <?php echo $user ?>
+                    </a>
+                </li>
             <?php }; ?>
         </ul>
     </form>

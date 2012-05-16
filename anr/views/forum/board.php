@@ -9,12 +9,12 @@
     <div style="clear:both;"></div>
     <div class="board">
         <ul>
-            <?php foreach ($this->threads as $thread) {?>
-            <li><a href="<?php echo $this->createUrl(array("c" => "forum", "a" => "thread"),array("id" => $thread->threadID)); ?>">
-                    <?php echo $thread->title; ?> </a>
+            <?php foreach ($this->threads as $thread) { ?>
+                <li><a href="<?php echo $this->createUrl(array("c" => "forum", "a" => "thread"), array("id" => $thread->threadID)); ?>">
+                        <?php echo $thread->title; ?> </a>
                     by <?php echo $thread->author->name; ?> 
                     on <?php echo $thread->date; ?></li>
-            <?php }?>
+            <?php } ?>
         </ul>
     </div>
 </div>
